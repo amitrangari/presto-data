@@ -1,0 +1,254 @@
+# =============================================================================
+# PRESTO Synthetic Data Generator - Domain Profiles
+# =============================================================================
+#
+# Defines three domain-specific configurations for synthetic data generation.
+# Each domain represents a real-world software system archetype with distinct
+# operational characteristics, release cadence, and DORA maturity levels.
+#
+# These profiles parameterize:
+#   - Number of releases and release cadence
+#   - DORA performance tier (which calibrates DORA metrics via dora_benchmarks.yaml)
+#   - Temporal dynamics (autoregression, trend, shocks)
+#   - Per-metric distribution overrides where domain context demands deviation
+#     from the default distributions in metric_registry.py
+#
+# Distribution override format matches scipy.stats parameterization:
+#   beta:             {a, b, loc (optional), scale (optional)}
+#   truncated_normal: {mu, sigma, low, high}
+#   lognormal:        {mu, sigma}
+#   poisson:          {lam}
+#   gamma:            {shape, scale}
+# =============================================================================
+
+domains:
+
+  # ---------------------------------------------------------------------------
+  # Domain 1: ABC Cloud Provider
+  # ---------------------------------------------------------------------------
+  # Enterprise cloud platform with 200+ microservices. Represents a large-scale
+  # SaaS provider with biweekly release trains, multiple deployment environments,
+  # and active chaos engineering practice. Similar in scale to platforms like
+  # Heroku, DigitalOcean, or Rackspace.
+  #
+  # Characteristics:
+  #   - High microservice count increases inter-service failure modes
+  #   - Biweekly release trains bundle multiple service updates
+  #   - Active chaos engineering program (Chaos Monkey-style)
+  #   - Mature but not elite CI/CD (typical of large orgs with legacy components)
+  # ---------------------------------------------------------------------------
+  abc-cloud-provider:
+    description: "Enterprise cloud platform with 200+ microservices"
+    n_releases: 170
+    start_date: "2021-01-04"
+    release_freq_days: 11  # approximately biweekly with some variance
+    dora_tier: "high"
+    seed: 42
+
+    temporal:
+      # Moderate autoregression: consecutive releases are correlated because
+      # the same team and codebase underlie successive releases, but biweekly
+      # cadence allows enough change to reduce stickiness
+      ar1_rho: 0.60
+
+      # 8% improvement over the observation window (~5 years), reflecting
+      # gradual platform maturation, SRE investment, and tooling upgrades
+      trend_strength: 0.08
+
+      # 5% probability of a shock event per release (major outage, dependency
+      # failure, security incident). Cloud platforms have moderate exposure
+      # due to their large blast radius and third-party dependency chains
+      shock_probability: 0.05
+
+    target_overrides:
+      # System Uptime: cloud providers target 99.9% but occasionally dip
+      # during multi-service incidents. Beta(15, 1.2) with support shifted
+      # to [92, 100] gives a left-skewed distribution centered around 98-99%
+      # with occasional dips to ~92-94%
+      "System Uptime (%)":
+        distribution: "beta"
+        params: {a: 15, b: 1.2, loc: 92, scale: 8}
+        bounds: [92.0, 100.0]
+
+      # MTTR is moderate: large orgs have runbooks but complex architectures
+      # slow root-cause analysis. Median around 18 minutes
+      "Mean Time to Recovery (MTTR) (Minutes)":
+        distribution: "lognormal"
+        params: {mu: 2.9, sigma: 0.7}
+        bounds: [0.0, 120.0]
+
+      # Production incidents: higher than default due to 200+ microservices.
+      # Poisson(12) gives a mean of 12 incidents per release cycle
+      "Production Incident Count":
+        distribution: "poisson"
+        params: {lam: 12.0}
+        bounds: [0.0, 60.0]
+
+
+  # ---------------------------------------------------------------------------
+  # Domain 2: XYZ Sales Force Automation
+  # ---------------------------------------------------------------------------
+  # Mid-to-large sales force automation platform (think Salesforce-lite or
+  # HubSpot-scale). Feature-heavy application with rapid iteration cycles
+  # driven by competitive pressure in the CRM market.
+  #
+  # Characteristics:
+  #   - Aggressive release cadence (~10 days) to ship features fast
+  #   - Feature adoption tracking is critical (sales teams resist change)
+  #   - Higher change failure rate accepted as cost of speed
+  #   - Customer satisfaction directly tied to feature stability
+  # ---------------------------------------------------------------------------
+  xyz-sales-force:
+    description: "Sales force automation platform with aggressive release cadence"
+    n_releases: 200
+    start_date: "2022-03-07"
+    release_freq_days: 10  # fast iteration, slightly more than weekly
+    dora_tier: "high"
+    seed: 123
+
+    temporal:
+      # Slightly lower autoregression than cloud: faster iterations mean
+      # each release can differ more from the previous one (new features,
+      # team rotation, sprint priorities)
+      ar1_rho: 0.55
+
+      # 5% improvement over observation window: reduced from 10% to prevent
+      # target saturation at 100% by the test period. SaaS platforms improve
+      # quickly but improvement rate flattens as the platform matures
+      trend_strength: 0.05
+
+      # 4% shock probability: fewer infrastructure-level shocks than cloud
+      # (smaller blast radius), but occasional data migration issues or
+      # API-breaking changes from third-party CRM integrations
+      shock_probability: 0.04
+
+    target_overrides:
+      # System Uptime: SaaS CRM platforms target 99.9% but have more
+      # feature-driven instability than infrastructure platforms. Beta(10, 1.5)
+      # with support [88, 100] gives a wider variance centered around 96-98%,
+      # preventing saturation at 100% during the observation window
+      "System Uptime (%)":
+        distribution: "beta"
+        params: {a: 10, b: 1.5, loc: 88, scale: 12}
+        bounds: [88.0, 100.0]
+
+      # Feature Adoption Rate: SaaS CRM users are resistant to workflow
+      # changes. Lower mean (70%) with wider variance than default
+      "Feature Adoption Rate (%)":
+        distribution: "truncated_normal"
+        params: {mu: 70.0, sigma: 18.0, low: 25.0, high: 100.0}
+        bounds: [25.0, 100.0]
+
+      # Customer Satisfaction: CRM users are vocal about disruptions.
+      # Slightly lower and more variable than default
+      "Customer Satisfaction Score (1-10)":
+        distribution: "truncated_normal"
+        params: {mu: 7.6, sigma: 1.6, low: 1.0, high: 10.0}
+        bounds: [1.0, 10.0]
+
+      # Higher change failure rate: the cost of shipping fast. Mean ~12%
+      # with occasional spikes to 30%+
+      "Change Failure Rate (%)":
+        distribution: "gamma"
+        params: {shape: 1.5, scale: 8.0}
+        bounds: [0.0, 50.0]
+
+
+  # ---------------------------------------------------------------------------
+  # Domain 3: Card Payment Processor
+  # ---------------------------------------------------------------------------
+  # Payment processing system with PCI-DSS compliance requirements, strict
+  # change management processes, and regulatory audit trails. Similar in
+  # profile to Stripe, Square, or Adyen backend systems.
+  #
+  # Characteristics:
+  #   - Monthly release cadence (regulated change windows)
+  #   - Extremely low tolerance for downtime (SLA >= 99.99%)
+  #   - Rigorous testing: UAT, regression, security, and compliance gates
+  #   - Low change failure rate due to extensive pre-production validation
+  #   - Chaos engineering focused on payment-path resilience
+  # ---------------------------------------------------------------------------
+  card-payment-processor:
+    description: "Payment processing system with strict PCI-DSS compliance"
+    n_releases: 150
+    start_date: "2021-01-04"
+    release_freq_days: 14  # biweekly release windows
+    dora_tier: "elite"
+    seed: 456
+
+    temporal:
+      # High autoregression: payment systems are extremely stable between
+      # releases. Strict change management means each release is carefully
+      # validated, so metrics are highly correlated across consecutive months
+      ar1_rho: 0.65
+
+      # 3% improvement over observation window: payment systems are already
+      # mature, so the improvement trajectory is flat. Reduced from 5% to
+      # prevent target saturation in the test period
+      trend_strength: 0.03
+
+      # 3% shock probability: heavily controlled environments with redundancy.
+      # Shocks are rare but impactful when they occur (e.g., card network
+      # partner outage, regulatory compliance gap discovered)
+      shock_probability: 0.03
+
+    target_overrides:
+      # System Uptime: payment processors target 99.99%+ but compliance
+      # incidents and partner outages cause occasional dips. Beta(12, 1.2)
+      # with support [90, 100] gives a wider range than the original [97, 100]
+      # to ensure meaningful variance for ML prediction while still reflecting
+      # high-reliability domain expectations
+      "System Uptime (%)":
+        distribution: "beta"
+        params: {a: 12, b: 1.2, loc: 90, scale: 10}
+        bounds: [90.0, 100.0]
+
+      # Change Failure Rate: extremely low for payment systems due to
+      # mandatory code review, multi-stage testing, and canary deployments.
+      # Gamma(2, 2.5) gives a mean of ~5% with rare exceedances above 15%
+      "Change Failure Rate (%)":
+        distribution: "gamma"
+        params: {shape: 2, scale: 2.5}
+        bounds: [0.0, 20.0]
+
+      # MTTR: payment systems invest heavily in automated recovery.
+      # Median around 8 minutes (fast failover to hot standby)
+      "Mean Time to Recovery (MTTR) (Minutes)":
+        distribution: "lognormal"
+        params: {mu: 2.1, sigma: 0.5}
+        bounds: [0.0, 45.0]
+
+      # Build Success Rate: very high due to extensive pre-merge validation.
+      # Beta(10, 0.8) shifted to [85, 100] gives most values above 95%
+      "Build Success Rate (%)":
+        distribution: "beta"
+        params: {a: 10, b: 0.8, loc: 85, scale: 15}
+        bounds: [85.0, 100.0]
+
+      # Security Vulnerabilities: lower count due to PCI-DSS compliance
+      # requiring regular security scans and remediation. Poisson(2)
+      "Security Vulnerabilities":
+        distribution: "poisson"
+        params: {lam: 2.0}
+        bounds: [0.0, 15.0]
+
+      # Rollback Rate: very low; rollbacks in payment systems require
+      # incident commander approval and are a last resort
+      "Rollback Rate (%)":
+        distribution: "gamma"
+        params: {shape: 1.0, scale: 2.0}
+        bounds: [0.0, 15.0]
+
+      # Production Incident Count: low due to controlled environment.
+      # Mean of 3 incidents per release cycle
+      "Production Incident Count":
+        distribution: "poisson"
+        params: {lam: 3.0}
+        bounds: [0.0, 20.0]
+
+      # Test Pass Rate: near-perfect due to rigorous QA gates.
+      # Beta(12, 0.8) shifted to [88, 100] clusters values around 97-99%
+      "Test Pass Rate (%)":
+        distribution: "beta"
+        params: {a: 12, b: 0.8, loc: 88, scale: 12}
+        bounds: [88.0, 100.0]

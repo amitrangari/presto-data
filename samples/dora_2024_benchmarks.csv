@@ -1,0 +1,5 @@
+tier,respondent_share_pct,deployment_frequency,lead_time_for_change,change_failure_rate,failed_deployment_recovery_time,source,verified
+Elite,19,On demand,Less than one day,~5 percent,Less than one hour,DORA 2024 Accelerate State of DevOps Report,SECONDARY_UNVERIFIED
+High,22,Once per day to once per week,NOT_OBTAINED,NOT_OBTAINED,NOT_OBTAINED,DORA 2024 Accelerate State of DevOps Report,SECONDARY_UNVERIFIED
+Medium,35,Once per week to once per month,NOT_OBTAINED,Lower than High tier in 2024,NOT_OBTAINED,DORA 2024 Accelerate State of DevOps Report,SECONDARY_UNVERIFIED
+Low,25,Less than once per month,NOT_OBTAINED,NOT_OBTAINED,NOT_OBTAINED,DORA 2024 Accelerate State of DevOps Report,SECONDARY_UNVERIFIED

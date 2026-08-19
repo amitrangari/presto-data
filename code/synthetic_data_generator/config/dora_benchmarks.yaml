@@ -1,0 +1,223 @@
+# =============================================================================
+# DORA 2024 State of DevOps Report - Benchmark Data for Calibration
+# =============================================================================
+#
+# Source: 2024 Accelerate State of DevOps Report (DORA / Google Cloud)
+#         https://dora.dev/research/2024/dora-report/
+#
+# Purpose: Calibrate synthetic data distributions so that generated DORA
+# metrics (deployment frequency, lead time, change failure rate, MTTR) fall
+# within realistic ranges for each performance tier.
+#
+# The domain_profiles.yaml file references a "dora_tier" for each domain.
+# The synthetic data generator uses these benchmarks to validate that the
+# generated DORA metric values are consistent with the assigned tier.
+#
+# Note on the 2024 report: DORA restructured its model slightly, adding
+# "reliability" as a distinct outcome metric (separate from the four
+# traditional DORA keys). The 2024 report also highlights AI adoption's
+# effect on software delivery performance for the first time.
+# =============================================================================
+
+dora_2024:
+
+  # ---------------------------------------------------------------------------
+  # Elite Performers
+  # ---------------------------------------------------------------------------
+  # The top tier. These teams deploy on-demand (often multiple times per day),
+  # recover from failures in under an hour, and have change failure rates
+  # below 5%. In the 2024 report, elite performers reliably exceed their
+  # SLO targets rather than merely meeting them.
+  # ---------------------------------------------------------------------------
+  elite:
+    deployment_frequency: "on-demand (multiple per day)"
+    deployment_frequency_per_week:
+      min: 7       # at least once per day
+      typical: 15  # roughly twice per day on average
+      max: 50      # hyperscale deployments (e.g., Amazon deploys every 11.7 seconds)
+
+    lead_time_for_changes_hours:
+      min: 0.5     # code merged and deployed within 30 minutes
+      typical: 2   # 2 hours: fast CI/CD with automated testing and canary
+      max: 24      # upper bound for elite: same-day deployment
+
+    change_failure_rate_pct:
+      min: 0       # zero failures is achievable at elite tier with feature flags
+      typical: 5   # 5% is the DORA elite benchmark
+      max: 10      # above 10% drops to "high" tier
+
+    mttr_minutes:
+      min: 5       # fully automated rollback / feature flag kill switch
+      typical: 30  # 30 minutes: detect, diagnose, mitigate
+      max: 60      # 1 hour is the upper bound before dropping to "high"
+
+    # 2024 addition: reliability is measured as performance vs. SLO targets
+    reliability: "above target"
+
+  # ---------------------------------------------------------------------------
+  # High Performers
+  # ---------------------------------------------------------------------------
+  # Strong teams that deploy at least daily (up to weekly). Recovery takes
+  # up to a day. Change failure rates are moderate (5-20%). These organizations
+  # typically have good CI/CD but may lack full production observability or
+  # automated rollback capabilities.
+  # ---------------------------------------------------------------------------
+  high:
+    deployment_frequency: "between once per day and once per week"
+    deployment_frequency_per_week:
+      min: 1       # once per week (minimum for "high")
+      typical: 3   # ~3 deploys/week: common in mature mid-size teams
+      max: 7       # daily deployments (upper boundary before "elite")
+
+    lead_time_for_changes_hours:
+      min: 24      # 1 day: code review + automated tests + staged rollout
+      typical: 72  # 3 days: typical for teams with manual QA gates
+      max: 168     # 1 week: the boundary before dropping to "medium"
+
+    change_failure_rate_pct:
+      min: 5       # lower boundary (overlap with elite)
+      typical: 12  # 12%: common in teams with good but imperfect testing
+      max: 20      # above 20% drops to "medium" tier
+
+    mttr_minutes:
+      min: 30      # fast teams with good runbooks
+      typical: 120 # 2 hours: typical when on-call engineer must diagnose
+      max: 1440    # 24 hours (1 day) is the upper bound for "high"
+
+    reliability: "meets target"
+
+  # ---------------------------------------------------------------------------
+  # Medium Performers
+  # ---------------------------------------------------------------------------
+  # Teams deploying weekly to monthly. Recovery takes days. Higher failure
+  # rates reflect limited test automation, manual deployment processes, or
+  # tightly coupled architectures that make changes risky.
+  # ---------------------------------------------------------------------------
+  medium:
+    deployment_frequency: "between once per week and once per month"
+    deployment_frequency_per_week:
+      min: 0.25    # once per month
+      typical: 0.5 # biweekly releases
+      max: 1       # weekly releases (upper boundary before "high")
+
+    lead_time_for_changes_hours:
+      min: 168     # 1 week
+      typical: 504 # ~3 weeks: common with multi-stage approval processes
+      max: 720     # 1 month: the boundary before dropping to "low"
+
+    change_failure_rate_pct:
+      min: 15      # lower boundary for medium
+      typical: 25  # 25%: one in four changes causes a failure
+      max: 35      # above 35% approaches "low" tier
+
+    mttr_minutes:
+      min: 1440    # 1 day minimum for medium tier
+      typical: 4320   # 3 days: common when fixes require re-deployment cycles
+      max: 10080   # 1 week: the upper boundary for "medium"
+
+    reliability: "below target"
+
+  # ---------------------------------------------------------------------------
+  # Low Performers
+  # ---------------------------------------------------------------------------
+  # Teams deploying monthly to semi-annually. Recovery can take weeks.
+  # Very high failure rates indicate fundamental issues with testing,
+  # architecture, or release management. The 2024 report found these
+  # teams often lack CI/CD entirely and rely on manual deployments.
+  # ---------------------------------------------------------------------------
+  low:
+    deployment_frequency: "between once per month and once every six months"
+    deployment_frequency_per_week:
+      min: 0.04    # once every ~6 months (~0.04/week)
+      typical: 0.1 # once every ~10 weeks
+      max: 0.25    # once per month (upper boundary before "medium")
+
+    lead_time_for_changes_hours:
+      min: 720     # 1 month
+      typical: 2160   # ~3 months: waterfall-style or heavily gated processes
+      max: 4320    # 6 months: semi-annual release cycles
+
+    change_failure_rate_pct:
+      min: 30      # lower boundary for low
+      typical: 45  # nearly half of all changes cause failures
+      max: 60      # 60%: catastrophically unreliable delivery
+
+    mttr_minutes:
+      min: 10080   # 1 week minimum for low tier
+      typical: 43200   # 1 month: recovery requires full release cycle
+      max: 129600  # 3 months: worst-case recovery times
+
+    reliability: "well below target"
+
+
+# =============================================================================
+# Key Findings from the 2024 Report
+# =============================================================================
+# These data points can be used to contextualize the synthetic data in the
+# PRESTO paper's discussion section.
+# =============================================================================
+key_findings:
+
+  # Performance gap between tiers
+  # Elite teams ship 127x faster than low performers (lead time)
+  elite_vs_low_lead_time_multiplier: 127
+
+  # Elite teams have 182x fewer change failures relative to their deployment
+  # volume compared to low performers
+  elite_vs_low_change_failure_multiplier: 182
+
+  # Elite teams recover 730x faster than low performers (MTTR)
+  elite_vs_low_mttr_multiplier: 730
+
+  # AI adoption: 39% of respondents report using AI in their software
+  # delivery processes (up from negligible in 2022)
+  ai_adoption_rate_pct: 39
+
+  # Of those who adopted AI, 75% report that it improved their delivery
+  # performance (speed, quality, or both)
+  ai_improves_delivery_pct: 75
+
+  # Platform engineering: teams with internal developer platforms (IDPs)
+  # had 8% higher delivery performance than those without
+  platform_engineering_boost_pct: 8
+
+  # Documentation: the 2024 report found that quality documentation is
+  # a statistically significant predictor of software delivery performance,
+  # independent of other practices
+  documentation_as_capability: true
+
+  # The 2024 report confirmed that throughput and stability are NOT
+  # trade-offs: elite performers score high on BOTH
+  throughput_stability_tradeoff: false
+
+  # User-centric metrics: the 2024 report added focus on "user
+  # satisfaction" as an outcome alongside operational metrics
+  user_centric_focus: true
+
+  # Burnout: teams with higher delivery performance report lower burnout.
+  # The causal direction is debated, but the correlation is consistent
+  # across all years of the DORA survey
+  higher_performance_lower_burnout: true
+
+
+# =============================================================================
+# DORA Metric Ranges for Calibration Validation
+# =============================================================================
+# Use these ranges in automated tests to verify that the synthetic data
+# generator produces DORA metrics within the expected tier boundaries.
+# The generator should emit a warning if more than 5% of samples fall
+# outside the specified range for the domain's assigned tier.
+# =============================================================================
+calibration_thresholds:
+
+  # Maximum percentage of samples allowed to fall outside the tier's range
+  # before the generator emits a warning
+  out_of_range_tolerance_pct: 5.0
+
+  # Mapping from metric name (as it appears in the CSV) to the DORA tier key
+  # above. This lets the validator look up the expected range for any domain.
+  metric_to_dora_key:
+    "Deployment Frequency (Per Week)": "deployment_frequency_per_week"
+    "Lead Time for Changes (Hours)": "lead_time_for_changes_hours"
+    "Change Failure Rate (%)": "change_failure_rate_pct"
+    "Mean Time to Recovery (MTTR) (Minutes)": "mttr_minutes"

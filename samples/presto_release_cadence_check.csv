@@ -1,0 +1,4 @@
+domain_profile,releases,years,releases_per_year,mean_days_between_releases,claimed_dora_tier,dora_tier_implied_by_cadence,consistent
+ABC Cloud Provider,170,5.0,34.0,10.7,High,Medium,NO
+XYZ Sales Force,200,5.5,36.4,10.0,High,Medium,NO
+Card Payment Processor,150,4.0,37.5,9.7,Elite,Medium,NO

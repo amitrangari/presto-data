@@ -1,0 +1,26 @@
+{
+  "domain": "card-payment-processor",
+  "seed": 456,
+  "n_releases": 150,
+  "n_metrics": 164,
+  "start_date": "2021-01-04",
+  "release_freq_days": 14,
+  "temporal": {
+    "ar1_rho": 0.65,
+    "trend_strength": 0.03,
+    "shock_probability": 0.03
+  },
+  "n_correlation_pairs": 38,
+  "phases": [
+    "production",
+    "build",
+    "code",
+    "test",
+    "performance",
+    "chaos",
+    "requirements",
+    "uat"
+  ],
+  "generated_at": "2026-08-09T03:55:00.696506Z",
+  "generator_version": "1.0.0"
+}

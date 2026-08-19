@@ -1,0 +1,67 @@
+{
+  "title": "PRESTO: A Machine Learning Framework for Predicting Software System Performance Using SDLC Metrics — Research Compendium (Code, Synthetic Data, and Real-World Validation Adapters)",
+  "upload_type": "dataset",
+  "description": "<p>Source data, code, and paper for &ldquo;PRESTO: A Machine Learning Framework for Predicting Software System Performance Using SDLC Metrics&rdquo; (Rangari, Mishra, Senapati). Includes: (1) the Gaussian copula-based synthetic SDLC data generator and its three generated domains (ABC Cloud Provider, XYZ Sales Force, Card Payment Processor); (2) adapter/pipeline scripts and small derived outputs for four independent real-world validation datasets (TravisTorrent, Mozilla Perfherder, GHALogs, SQuaD) &mdash; bulk third-party raw data is not re-hosted, each source folder documents exactly how to fetch it from its original DOI/URL; (3) all ablation/robustness scripts (nested cross-validation tuning, Siegmund baseline, System-Availability ablation, bootstrap and target-correlation ablation, lag-shift leakage fix, Phase-Aware Recursive Feature Elimination reimplementation); (4) the figure-generation scripts; and (5) the manuscript LaTeX source.</p><p>How well can you predict production performance from development process data alone? Modern DevOps pipelines record 164 metrics across eight SDLC phases, yet no public dataset links these signals to runtime outcomes. Across three enterprise-domain synthetic datasets, the best model achieved R&sup2; = 0.26&ndash;0.36 using only SDLC process features; a target-correlation ablation shows this largely reflects recovery of the generator's specified structure. Four independent real-world datasets provide bootstrap-CI-backed validation: TravisTorrent (R&sup2;=0.475 best of seven, median 0.005), Mozilla Perfherder (R&sup2;=0.17&ndash;0.91, autoregressive persistence), GHALogs (R&sup2;&asymp;0.11, zero leakage risk, n=28,443), and SQuaD (R&sup2;=0.402 defect-fix, 0.483 enriched with real static-analysis features; R&sup2;=0.245 CVE-count). GHALogs and SQuaD's CVE-count result license a confirmatory claim: SDLC process signals carry genuine, transferable predictive value, though not uniformly across every real-world dataset examined.</p><p>See README.md in this deposit for the full directory map and reproduction steps, and real-data/README.md for exactly what raw third-party data is excluded and how to fetch it (kept out to keep this compendium small and clonable, per source DOI/URL, not because it's unavailable).</p>",
+  "creators": [
+    {
+      "name": "Rangari, Amit J.",
+      "affiliation": "JPMorgan Chase, Atlanta, GA, USA",
+      "orcid": "0009-0009-9419-1015"
+    },
+    {
+      "name": "Mishra, Lalit Narayan",
+      "affiliation": "Lowe's Companies Inc., Mooresville, NC, USA",
+      "orcid": "0009-0007-2638-1592"
+    },
+    {
+      "name": "Senapati, Biswaranjan",
+      "affiliation": "Department of Computer Science, University of Arkansas at Little Rock (UALR), Little Rock, AR, USA",
+      "orcid": "0000-0002-0717-5888"
+    }
+  ],
+  "contributors": [],
+  "keywords": [
+    "continuous integration",
+    "DevOps",
+    "feature engineering",
+    "gradient boosting",
+    "machine learning",
+    "performance testing",
+    "SDLC metrics",
+    "software performance prediction",
+    "software quality",
+    "synthetic data generation",
+    "Gaussian copula",
+    "reproducibility package"
+  ],
+  "license": "CC-BY-4.0",
+  "access_right": "open",
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "10.5281/zenodo.14642238",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "10.5281/zenodo.10154920",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "10.5281/zenodo.17566691",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "10.6084/m9.figshare.19314170",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    }
+  ],
+  "notes": "TODO before publishing: (1) add an isSupplementTo/isPublishedIn related_identifier once the MDPI paper has its own DOI; (2) code/ is MIT-licensed (see code/LICENSE) while this deposit-level license field is CC-BY-4.0 for the data/paper -- note the split licensing explicitly in the Zenodo web form's description if it matters for your use case; (3) confirm the upload_type ('dataset') is what you want -- Zenodo also allows 'software' but a record can only have one type, and this compendium is predominantly data plus a paper; (4) this deposit does NOT contain the bulk raw real-world datasets (TravisTorrent/Perfherder/GHALogs) -- each real-data/<source>/DOWNLOAD.md documents the exact source DOI/URL and fetch command, listed above as isDerivedFrom entries."
+}

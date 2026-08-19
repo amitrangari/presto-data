@@ -1,0 +1,26 @@
+rank,name,category,url,sdlc_phases_covered,runtime_outcome,scale,license,verified_by
+1,Mozilla Performance Measurements and Alerts (ICPE 2025),APM / perf regression,https://doi.org/10.5281/zenodo.14642238,Build+Test+PerfTest,YES perf timeseries + validated alerts,5655 timeseries / 17989 alerts / 561 MB,CC-BY-4.0,direct_fetch
+2,SQuaD Software Quality Dataset,Code metrics + releases,https://zenodo.org/records/17566691,Requirements+Code,NO,450 projects / 63586 releases / 700+ metrics,open (verify),search_summary
+3,GHALogs GitHub Actions runs,CI/CD build metrics,https://doi.org/10.5281/zenodo.10154920,Build+Test,build/step durations only,116k workflows / 513k runs / 2.3M steps,unstated (verify),direct_fetch
+4,DORA Accelerate State of DevOps 2024,Industry benchmark,https://dora.dev/research/2024/dora-report/,cross-phase process,aggregate only,39000+ respondents,report only no microdata,search_summary
+5,VOID Verica Open Incident Database,Incident / MTTR,https://www.thevoid.community/database,Production,YES incident duration,10000+ incidents / ~600 companies,free access,search_summary
+6,SmartSHARK,MSR multi-source,https://smartshark.github.io/,Requirements+Code+Build+Test,NO,77 Java projects (Apache),open,search_summary
+7,Technical Debt Dataset,Code quality + faults,https://github.com/clowee/The-Technical-Debt-Dataset,Code+Test,NO,78k commits / 33 projects / 1.8M SonarQube issues,open,search_summary
+8,The Public Jira Dataset,Requirements / issues,https://zenodo.org/doi/10.5281/zenodo.5882881,Requirements,NO,2.7M issues / 1822 projects / 16 Jiras,open anonymized,search_summary
+9,TravisTorrent,CI/CD build metrics,https://travistorrent.testroots.org/,Code+Build+Test+Project,build duration only,2.64M builds / 1359 projects,open (2017 cutoff),search_summary
+10,GH Actions workflow histories (MSR 2024),CI config evolution,https://doi.org/10.5281/zenodo.10259013,Build,NO,2.3M workflows / 43.3k repos,open,search_summary
+11,Alibaba cluster-trace-microservices-v2022,Production telemetry,https://github.com/alibaba/clusterdata/tree/master/cluster-trace-microservices-v2022,Production only,YES response time,28000+ microservices / 13 days / 20M+ traces,open (verify),search_summary
+12,RCAEval RE1/RE2/RE3,Chaos / fault injection,https://github.com/phamquiluan/RCAEval,ChaosTest+Production,YES metrics traces logs,735 failure cases / 11 fault types,open,search_summary
+13,Loghub / Loghub-2.0,Production anomaly base rates,https://github.com/logpai/loghub,Production,anomaly labels,19 datasets / 6 labeled,open,search_summary
+14,ApacheJIT,JIT defect prediction,https://zenodo.org/records/5907002,Code,NO,106674 commits / 14 Apache projects,open,search_summary
+15,IDoFT flaky tests,Test stability,https://github.com/TestingResearchIllinois/idoft,Test,NO,continuously updated,open,search_summary
+16,FlakeFlagger dataset,Test stability,https://zenodo.org/records/4450723,Test,NO,10000 runs / per-test features,open,search_summary
+17,20-MAD,MSR long-horizon,https://arxiv.org/abs/2003.14015,Requirements+Code,NO,765 projects / 3.4M commits / 2.3M issues,open,search_summary
+18,SEART GitHub Search,Sampling frame,https://seart-ghs.si.usi.ch/,project metadata,NO,735669 repositories / 25 attributes,open,search_summary
+19,CNCF DevStats,DevOps process metrics,https://k8s.devstats.cncf.io/,Requirements+Code+Process,NO,~80 k8s repos + all CNCF projects,open,search_summary
+20,Wikimedia public engineering data,End-to-end candidate,https://wikitech.wikimedia.org/wiki/Incident_status,ALL EIGHT (unverified),YES latency + incidents,not packaged / must construct,public,inference_UNVERIFIED
+21,Mozilla Crash Stats / Mission Control,Release reliability,https://crash-stats.mozilla.org/,Production,YES crash rate per release,public subset,public subset,search_summary
+22,Chromium chromeperf dashboard,APM / perf regression,https://chromeperf.appspot.com/,Build+PerfTest,YES but ACCESS BLOCKED,large,internal-only default,search_summary
+23,Unified Bug Dataset,Code metrics + defects,http://www.inf.u-szeged.hu/~ferenc/papers/UnifiedBugDataSet/,Code,NO,aggregated corpora,open,search_summary
+24,PROMISE / tera-PROMISE,Defect prediction classic,http://promise.site.uottawa.ca/SERepository/,Code,NO,200+ projects,open,search_summary
+25,Mozilla regressors-regressions dataset,Defect commits,https://github.com/mozilla/regressors-regressions-dataset,Code,NO,Bugzilla derived,open,search_summary

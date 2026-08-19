@@ -1,0 +1,26 @@
+{
+  "domain": "abc-cloud-provider",
+  "seed": 42,
+  "n_releases": 170,
+  "n_metrics": 164,
+  "start_date": "2021-01-04",
+  "release_freq_days": 11,
+  "temporal": {
+    "ar1_rho": 0.6,
+    "trend_strength": 0.08,
+    "shock_probability": 0.05
+  },
+  "n_correlation_pairs": 38,
+  "phases": [
+    "production",
+    "build",
+    "code",
+    "test",
+    "performance",
+    "chaos",
+    "requirements",
+    "uat"
+  ],
+  "generated_at": "2026-08-11T00:46:31.791773Z",
+  "generator_version": "1.0.0"
+}

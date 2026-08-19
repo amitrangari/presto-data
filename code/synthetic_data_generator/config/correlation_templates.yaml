@@ -1,0 +1,315 @@
+# =============================================================================
+# PRESTO Synthetic Data Generator - Correlation Templates
+# =============================================================================
+#
+# Defines the inter-metric correlations that the Gaussian copula will use to
+# generate realistic, correlated synthetic SDLC data. All correlation
+# coefficients (rho) are between -1.0 and 1.0.
+#
+# Structure: [metric_a, metric_b, rho]
+# Unspecified pairs default to rho = 0 (independence).
+#
+# Correlation magnitudes follow these conventions:
+#   |rho| >= 0.70 : strong (direct causal or near-deterministic link)
+#   0.40 <= |rho| < 0.70 : moderate (clear but partial relationship)
+#   0.20 <= |rho| < 0.40 : weak (indirect or attenuated link)
+#   |rho| < 0.20 : negligible (omitted from this file)
+#
+# Sign convention:
+#   positive rho: both metrics move in the same direction (both up or both down)
+#   negative rho: metrics move in opposite directions
+#
+# Domain rationale is provided inline for every correlation.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# 1. TARGET CORRELATIONS
+#    System Uptime (%) is the prediction target. These correlations encode
+#    which metrics most directly drive or degrade system availability.
+# ---------------------------------------------------------------------------
+target_correlations:
+
+  # --- Strong positive: metrics that directly support high uptime ---
+
+  # Successful deployments mean fewer rollback-induced outages
+  - ["System Uptime (%)", "Production Deployment Success Rate (%)", 0.70]
+
+  # Comprehensive production monitoring catches issues before they cause downtime
+  - ["System Uptime (%)", "Production Monitoring Coverage (%)", 0.60]
+
+  # Higher test pass rates mean fewer defective releases reaching production
+  - ["System Uptime (%)", "Test Pass Rate (%)", 0.58]
+
+  # Regression tests catch regressions that would otherwise cause outages
+  - ["System Uptime (%)", "Regression Test Pass Rate (%)", 0.55]
+
+  # SLA-compliant systems are, by definition, highly available
+  - ["System Uptime (%)", "Performance SLA Compliance (%)", 0.72]
+
+  # Reliable builds produce reliable artifacts, reducing deployment failures
+  - ["System Uptime (%)", "Build Success Rate (%)", 0.55]
+
+  # Good build pipeline throughput correlates with mature CI/CD practices
+  - ["System Uptime (%)", "Build Pipeline Efficiency (%)", 0.48]
+
+  # Systems that recover quickly from chaos tests have better real-world uptime
+  - ["System Uptime (%)", "Resilience Score (1-10)", 0.62]
+
+  # Circuit breakers prevent cascading failures that cause widespread outages
+  - ["System Uptime (%)", "Circuit Breaker Effectiveness (%)", 0.55]
+
+  # Failover mechanisms directly protect against single-point-of-failure downtime
+  - ["System Uptime (%)", "Failover Success Rate (%)", 0.60]
+
+  # Good environment health is a necessary condition for high uptime
+  - ["System Uptime (%)", "Production Environment Health Score (1-10)", 0.65]
+
+  # Performance baseline achievement means system performs within expected bounds
+  - ["System Uptime (%)", "Performance Baseline Achievement (%)", 0.50]
+
+  # Higher system availability during perf tests predicts production availability
+  - ["System Uptime (%)", "System Availability (%)", 0.68]
+
+  # Higher SLA compliance under load means uptime holds under real traffic
+  - ["System Uptime (%)", "SLA Compliance Rate (%)", 0.60]
+
+  # --- Strong negative: metrics that hurt uptime when they increase ---
+
+  # Change failures directly cause outages; DORA's key reliability indicator
+  - ["System Uptime (%)", "Change Failure Rate (%)", -0.65]
+
+  # Defects leaking to production are the primary cause of unplanned downtime
+  - ["System Uptime (%)", "Defect Leakage (%)", -0.55]
+
+  # Higher rollback rates indicate unstable deployments causing service disruption
+  - ["System Uptime (%)", "Rollback Rate (%)", -0.50]
+
+  # More production incidents directly reduce available uptime
+  - ["System Uptime (%)", "Production Incident Count", -0.60]
+
+  # Longer recovery times mean more downtime per incident
+  - ["System Uptime (%)", "Mean Time to Recovery (MTTR) (Minutes)", -0.58]
+
+  # Higher error rates during performance tests predict production instability
+  - ["System Uptime (%)", "Error Rate (%)", -0.52]
+
+  # More error budget consumed means closer to SLO breach / potential outage
+  - ["System Uptime (%)", "Error Budget Consumption (%)", -0.45]
+
+
+# ---------------------------------------------------------------------------
+# 2. INTRA-PHASE CORRELATIONS
+#    Correlations among metrics within the same SDLC phase. Metrics in the
+#    same phase share tooling, processes, and teams, so they co-vary.
+# ---------------------------------------------------------------------------
+intra_phase_correlations:
+
+  # ----- BUILD PHASE (20 metrics) -----
+  build:
+    # A good pipeline is both fast and reliable
+    - ["Build Success Rate (%)", "Build Pipeline Efficiency (%)", 0.75]
+
+    # Faster builds usually correlate with better cache utilization
+    - ["Build Duration (Minutes)", "Build Cache Hit Rate (%)", -0.55]
+
+    # More failed builds mean longer average fix times (queue effects)
+    - ["Failed Builds", "Time to Fix Build Failures (Hours)", 0.60]
+
+    # Reproducible builds indicate mature, deterministic CI configuration
+    - ["Build Reproducibility Rate (%)", "Build Environment Consistency (%)", 0.70]
+
+    # Higher build success naturally means more artifacts get promoted
+    - ["Build Success Rate (%)", "Artifact Promotion Rate (%)", 0.65]
+
+    # More security issues slow the pipeline and reduce efficiency
+    - ["Build Security Scan Results (Issues)", "Build Pipeline Efficiency (%)", -0.40]
+
+    # More frequent builds with higher success rate indicates mature CI
+    - ["Build Frequency (Builds/Day)", "Build Success Rate (%)", 0.45]
+
+    # Build integrity validates that artifacts are uncorrupted, supporting reproducibility
+    - ["Build Artifact Integrity (%)", "Build Reproducibility Rate (%)", 0.60]
+
+  # ----- TEST PHASE (21 metrics) -----
+  test:
+    # Higher test coverage yields higher pass rates (more bugs caught early)
+    - ["Unit Test Coverage (%)", "Test Pass Rate (%)", 0.55]
+
+    # Integration coverage and unit coverage tend to be invested in together
+    - ["Unit Test Coverage (%)", "Integration Test Coverage (%)", 0.50]
+
+    # Higher automation ratio means faster, more consistent test execution
+    - ["Automated Test Ratio (%)", "Test Automation Coverage (%)", 0.75]
+
+    # Flaky tests degrade trust and reduce effective pass rates
+    - ["Test Flakiness Rate (%)", "Test Pass Rate (%)", -0.50]
+
+    # Higher defect leakage indicates tests are not catching enough bugs
+    - ["Test Pass Rate (%)", "Defect Leakage (%)", -0.55]
+
+    # Higher regression pass rate means fewer defects leak through
+    - ["Regression Test Pass Rate (%)", "Defect Leakage (%)", -0.60]
+
+    # Stable test environments produce more consistent results
+    - ["Test Environment Availability (%)", "Test Stability Index (1-10)", 0.55]
+
+    # Higher maintenance effort often indicates flaky or brittle test suites
+    - ["Test Maintenance Effort (Hours/Week)", "Test Flakiness Rate (%)", 0.45]
+
+  # ----- CODE PHASE (24 metrics) -----
+  code:
+    # More complex code has more defects per thousand lines
+    - ["Cyclomatic Complexity", "Defect Density (Defects/KLOC)", 0.60]
+
+    # Code duplication increases complexity and defects
+    - ["Code Duplication Rate (%)", "Cyclomatic Complexity", 0.45]
+
+    # Higher unit test coverage catches more defects at the unit level
+    - ["Unit Test Coverage (%)", "Defects Identified (Unit)", 0.40]
+
+    # Security vulnerabilities correlate with code complexity
+    - ["Cyclomatic Complexity", "Security Vulnerabilities", 0.50]
+
+    # More review comments typically indicate more complex or problematic code
+    - ["Code Review Comments", "Cyclomatic Complexity", 0.35]
+
+    # Dead code percentage reflects technical debt accumulation
+    - ["Dead Code Percentage (%)", "Technical Debt (Hours)", 0.55]
+
+    # Code smells are a proxy for accumulated technical debt
+    - ["Code Smells", "Technical Debt (Hours)", 0.65]
+
+    # Higher coverage pass rate means the team enforces quality gates
+    - ["Code Coverage Pass Rate (%)", "Unit Test Coverage (%)", 0.70]
+
+  # ----- PRODUCTION PHASE (20 metrics) -----
+  production:
+    # Successful deployments directly reduce change failure rates
+    - ["Production Deployment Success Rate (%)", "Change Failure Rate (%)", -0.70]
+
+    # Higher monitoring coverage means faster incident detection and recovery
+    - ["Production Monitoring Coverage (%)", "Mean Time to Recovery (MTTR) (Minutes)", -0.50]
+
+    # More incidents lead to lower customer satisfaction
+    - ["Production Incident Count", "Customer Satisfaction Score (1-10)", -0.55]
+
+    # Faster critical issue resolution improves customer satisfaction
+    - ["Critical Issue Resolution Time (Hours)", "Customer Satisfaction Score (1-10)", -0.45]
+
+    # Higher deployment success rates correlate with faster deployment frequency
+    - ["Production Deployment Success Rate (%)", "Deployment Frequency (Per Week)", 0.50]
+
+    # More rollbacks indicate higher failure rates
+    - ["Rollback Rate (%)", "Change Failure Rate (%)", 0.65]
+
+    # Better environment health means fewer incidents
+    - ["Production Environment Health Score (1-10)", "Production Incident Count", -0.55]
+
+    # Longer lead times correlate with less frequent deployments
+    - ["Lead Time for Changes (Hours)", "Deployment Frequency (Per Week)", -0.60]
+
+  # ----- PERFORMANCE TEST PHASE (20 metrics) -----
+  performance:
+    # Higher throughput and lower latency: fundamental performance relationship
+    - ["Throughput (RPS)", "Latency (ms)", -0.55]
+
+    # Higher response times degrade SLA compliance
+    - ["Response Time (ms)", "SLA Compliance Rate (%)", -0.60]
+
+    # Higher CPU utilization drives up response times under load
+    - ["CPU Utilization (%)", "Response Time (ms)", 0.50]
+
+    # Memory pressure causes increased latency due to GC pauses and swapping
+    - ["Memory Utilization (%)", "Latency (ms)", 0.40]
+
+    # Higher error rates reduce overall system availability
+    - ["Error Rate (%)", "System Availability (%)", -0.65]
+
+    # Higher cache hit ratios reduce response times
+    - ["Cache Hit Ratio (%)", "Response Time (ms)", -0.50]
+
+    # Performance baseline deviation increases when response time grows
+    - ["Response Time (ms)", "Performance Baseline Deviation (%)", 0.55]
+
+    # More perf test coverage finds regressions before they reach production
+    - ["Load Test Scenario Coverage (%)", "Performance Regression Detection Rate (%)", 0.60]
+
+  # ----- CHAOS PHASE (20 metrics) -----
+  chaos:
+    # Faster system recovery directly improves resilience score
+    - ["System Recovery Time (Minutes)", "Resilience Score (1-10)", -0.65]
+
+    # Effective circuit breakers are a key contributor to resilience
+    - ["Circuit Breaker Effectiveness (%)", "Resilience Score (1-10)", 0.60]
+
+    # Successful failovers preserve data consistency during chaos events
+    - ["Failover Success Rate (%)", "Data Consistency Under Chaos (%)", 0.55]
+
+    # Good monitoring alerts enable fast recovery
+    - ["Monitoring Alert Accuracy (%)", "System Recovery Time (Minutes)", -0.45]
+
+    # Strong network partition tolerance improves overall service mesh stability
+    - ["Network Partition Tolerance (%)", "Service Mesh Stability (%)", 0.55]
+
+    # Blast radius containment limits cascading failures (graceful degradation)
+    - ["Blast Radius Containment (%)", "Graceful Degradation Score (1-10)", 0.60]
+
+    # More chaos coverage helps find weaknesses, improving failover success
+    - ["Chaos Engineering Coverage (%)", "Failover Success Rate (%)", 0.45]
+
+    # More error budget consumed means resilience is being tested to its limits
+    - ["Error Budget Consumption (%)", "Resilience Score (1-10)", -0.50]
+
+
+# ---------------------------------------------------------------------------
+# 3. CROSS-PHASE CORRELATIONS
+#    Correlations between metrics in different SDLC phases. These capture
+#    how upstream quality propagates downstream and how operational metrics
+#    feed back to development metrics.
+# ---------------------------------------------------------------------------
+cross_phase_correlations:
+
+  # Build -> Test: higher build success means tests run on valid artifacts
+  - ["Build Success Rate (%)", "Test Pass Rate (%)", 0.55]
+
+  # Code -> Test: higher unit test coverage drives higher overall test pass rates
+  - ["Unit Test Coverage (%)", "Regression Test Pass Rate (%)", 0.50]
+
+  # Code -> Production: complex code leads to more production incidents
+  - ["Cyclomatic Complexity", "Production Incident Count", 0.45]
+
+  # Code -> Production: higher defect density leads to higher defect leakage
+  - ["Defect Density (Defects/KLOC)", "Defect Leakage (%)", 0.50]
+
+  # Test -> Production: regression testing prevents production failures
+  - ["Regression Test Pass Rate (%)", "Production Deployment Success Rate (%)", 0.55]
+
+  # Test -> Production: defect leakage directly causes change failures in production
+  - ["Defect Leakage (%)", "Change Failure Rate (%)", 0.60]
+
+  # Build -> Production: reliable pipelines enable faster deployment frequency
+  - ["Build Pipeline Efficiency (%)", "Deployment Frequency (Per Week)", 0.50]
+
+  # Performance -> Production: SLA compliance in tests predicts production SLA
+  - ["SLA Compliance Rate (%)", "Performance SLA Compliance (%)", 0.65]
+
+  # Performance -> Chaos: systems that perform well under load also resist chaos
+  - ["System Availability (%)", "Resilience Score (1-10)", 0.55]
+
+  # Chaos -> Production: resilience testing improves production recovery times
+  - ["Resilience Score (1-10)", "Recovery Time from Failures (Minutes)", -0.50]
+
+  # Code -> Build: security vulnerabilities found in code correlate with build scan results
+  - ["Security Vulnerabilities", "Build Security Scan Results (Issues)", 0.60]
+
+  # Test -> Chaos: well-tested systems show better failover behavior
+  - ["Test Pass Rate (%)", "Failover Success Rate (%)", 0.40]
+
+  # Build -> Chaos: consistent build environments produce more stable deployments
+  - ["Build Environment Consistency (%)", "Service Mesh Stability (%)", 0.40]
+
+  # Code -> Performance: complex code yields higher response times under load
+  - ["Cyclomatic Complexity", "Response Time (ms)", 0.45]
+
+  # Requirements -> Test: clear requirements lead to better test outcomes
+  - ["Requirements Clarity Index (1-10)", "Test Pass Rate (%)", 0.35]

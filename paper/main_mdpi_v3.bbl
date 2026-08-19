@@ -1,0 +1,606 @@
+\begin{thebibliography}{999}
+
+\bibitem[Lazowska et~al.(1984)Lazowska, Zahorjan, Graham, and
+  Sevcik]{lazowska1984}
+Lazowska, E.D.; Zahorjan, J.; Graham, G.S.; Sevcik, K.C.
+\newblock {\em Quantitative System Performance: Computer System Analysis Using
+  Queueing Network Models}; Prentice-Hall,  1984.
+
+\bibitem[Reiser and Lavenberg(1980)]{reiser1980}
+Reiser, M.; Lavenberg, S.S.
+\newblock Mean-value analysis of closed multichain queuing networks.
+\newblock {\em Journal of the ACM} {\bf 1980}, {\em 27},~313--322.
+\newblock {\url{https://doi.org/10.1145/322186.322195}}.
+
+\bibitem[Ferrari(1978)]{ferrari1978}
+Ferrari, D.
+\newblock {\em Computer Systems Performance Evaluation}; Prentice-Hall,  1978.
+
+\bibitem[Sauer and Chandy(1981)]{sauer1981}
+Sauer, C.H.; Chandy, K.M.
+\newblock {\em Computer Systems Performance Modeling}; Prentice-Hall,  1981.
+
+\bibitem[Jain(1991)]{jain1991}
+Jain, R.
+\newblock {\em The Art of Computer Systems Performance Analysis: Techniques for
+  Experimental Design, Measurement, Simulation, and Modeling}; Wiley,  1991.
+
+\bibitem[Smith(1990)]{smith1990}
+Smith, C.U.
+\newblock {\em Performance Engineering of Software Systems}; Addison-Wesley,
+  1990.
+
+\bibitem[Smith and Williams(2002)]{smith2002}
+Smith, C.U.; Williams, L.G.
+\newblock {\em Performance Solutions: A Practical Guide to Creating Responsive,
+  Scalable Software}; Addison-Wesley,  2002.
+
+\bibitem[Balsamo et~al.(2004)Balsamo, Di~Marco, Inverardi, and
+  Simeoni]{balsamo2004}
+Balsamo, S.; Di~Marco, A.; Inverardi, P.; Simeoni, M.
+\newblock Model-based performance prediction in software development: A survey.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2004}, {\em
+  30},~295--310.
+\newblock {\url{https://doi.org/10.1109/TSE.2004.9}}.
+
+\bibitem[Cortellessa et~al.(2011)Cortellessa, Di~Marco, and
+  Inverardi]{cortellessa2011}
+Cortellessa, V.; Di~Marco, A.; Inverardi, P.
+\newblock {\em Model-Based Software Performance Analysis}; Springer,  2011.
+\newblock {\url{https://doi.org/10.1007/978-3-642-13621-4}}.
+
+\bibitem[Jiang and Hassan(2015)]{jiang2015}
+Jiang, Z.M.; Hassan, A.E.
+\newblock A Survey on Load Testing of Large-Scale Software Systems.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2015}, {\em
+  41},~1091--1118.
+\newblock {\url{https://doi.org/10.1109/TSE.2015.2445340}}.
+
+\bibitem[Nguyen et~al.(2012)Nguyen, Adams, Jiang, Hassan, Nasser, and
+  Flora]{nguyen2012}
+Nguyen, T.H.D.; Adams, B.; Jiang, Z.M.; Hassan, A.E.; Nasser, M.; Flora, P.
+\newblock Automated Detection of Performance Regressions Using Statistical
+  Process Control Techniques.
+\newblock In Proceedings of the Proceedings of the 3rd ACM/SPEC International
+  Conference on Performance Engineering (ICPE),  2012, pp. 299--310.
+\newblock {\url{https://doi.org/10.1145/2188286.2188344}}.
+
+\bibitem[Foo et~al.(2010)Foo, Jiang, Adams, Hassan, Zou, and Flora]{foo2010}
+Foo, K.C.; Jiang, Z.M.; Adams, B.; Hassan, A.E.; Zou, Y.; Flora, P.
+\newblock Mining Performance Regression Testing Repositories for Automated
+  Performance Analysis.
+\newblock In Proceedings of the Proceedings of the 10th International
+  Conference on Quality Software (QSIC),  2010, pp. 32--41.
+\newblock {\url{https://doi.org/10.1109/QSIC.2010.35}}.
+
+\bibitem[{HP Labs}(2006)]{hplabs2006}
+{HP Labs}.
+\newblock Predicting Performance in Distributed Enterprise Applications.
+\newblock Technical Report HPL-2006-76, HP Labs,  2006.
+
+\bibitem[Weyuker and Vokolos(2000)]{weyuker2000}
+Weyuker, E.J.; Vokolos, F.I.
+\newblock Experience with Performance Testing of Software Systems: Issues, an
+  Approach, and Case Study.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2000}, {\em
+  26},~1147--1156.
+\newblock {\url{https://doi.org/10.1109/32.888628}}.
+
+\bibitem[Liu et~al.(2005)Liu, Fekete, and Gorton]{liu2005}
+Liu, Y.; Fekete, A.; Gorton, I.
+\newblock Design-level performance prediction of component-based applications.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2005}, {\em
+  31},~928--941.
+\newblock {\url{https://doi.org/10.1109/TSE.2005.127}}.
+
+\bibitem[Pooley and King(1999)]{pooley1999}
+Pooley, R.J.; King, P.
+\newblock The {Unified Modelling Language} and performance engineering.
+\newblock {\em IEE Proceedings --- Software} {\bf 1999}, {\em 146},~2--10.
+\newblock {\url{https://doi.org/10.1049/ip-sen:19990151}}.
+
+\bibitem[Menasc\'{e} et~al.(2004)Menasc\'{e}, Almeida, and Dowdy]{menasce2004}
+Menasc\'{e}, D.A.; Almeida, V.A.F.; Dowdy, L.W.
+\newblock {\em Capacity Planning for Web Services: Metrics, Models, and
+  Methods}; Prentice Hall,  2004.
+
+\bibitem[Kant(1992)]{kant1992}
+Kant, K.
+\newblock {\em Introduction to Computer System Performance Evaluation};
+  McGraw-Hill,  1992.
+
+\bibitem[Woodside et~al.(2007)Woodside, Franks, and Petriu]{woodside2007}
+Woodside, C.M.; Franks, G.; Petriu, D.C.
+\newblock The future of software performance engineering.
+\newblock In Proceedings of the Proceedings of the Future of Software
+  Engineering (FOSE),  2007, pp. 171--187.
+\newblock {\url{https://doi.org/10.1109/FOSE.2007.32}}.
+
+\bibitem[Koziolek(2010)]{koziolek2010}
+Koziolek, H.
+\newblock Performance evaluation of component-based software systems: A survey.
+\newblock {\em Performance Evaluation} {\bf 2010}, {\em 67},~634--658.
+\newblock {\url{https://doi.org/10.1016/j.peva.2009.07.007}}.
+
+\bibitem[Becker et~al.(2009)Becker, Koziolek, and Reussner]{becker2009}
+Becker, S.; Koziolek, H.; Reussner, R.
+\newblock The {Palladio} Component Model for Model-Driven Performance
+  Prediction.
+\newblock {\em Journal of Systems and Software} {\bf 2009}, {\em 82},~3--22.
+\newblock {\url{https://doi.org/10.1016/j.jss.2008.03.066}}.
+
+\bibitem[Jin et~al.(2014)Jin, Qu, Cohen, and Robinson]{jin2014}
+Jin, D.; Qu, X.; Cohen, M.B.; Robinson, B.
+\newblock Configurations everywhere: Implications for testing and debugging in
+  practice.
+\newblock In Proceedings of the Proceedings of the International Conference on
+  Software Engineering (ICSE),  2014.
+\newblock {\url{https://doi.org/10.1145/2591062.2591191}}.
+
+\bibitem[Chen et~al.(2009)Chen, Babar, and Cawley]{chen2009}
+Chen, L.; Babar, M.A.; Cawley, C.
+\newblock A status report on the evaluation of variability management
+  approaches.
+\newblock In Proceedings of the Proceedings of the International Conference on
+  Evaluation and Assessment in Software Engineering,  2009.
+\newblock {\url{https://doi.org/10.14236/EWIC/EASE2009.14}}.
+
+\bibitem[Chidamber and Kemerer(1994)]{chidamber1994}
+Chidamber, S.R.; Kemerer, C.F.
+\newblock A metrics suite for object oriented design.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 1994}, {\em
+  20},~476--493.
+\newblock {\url{https://doi.org/10.1109/32.295895}}.
+
+\bibitem[McCabe(1976)]{mccabe1976}
+McCabe, T.J.
+\newblock A complexity measure.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 1976}, {\em
+  SE-2},~308--320.
+\newblock {\url{https://doi.org/10.1109/TSE.1976.233837}}.
+
+\bibitem[Boehm et~al.(2000)Boehm, Abts, Brown, Chulani, Clark, Horowitz,
+  Madachy, Reifer, and Steece]{boehm2000}
+Boehm, B.W.; Abts, C.; Brown, A.W.; Chulani, S.; Clark, B.K.; Horowitz, E.;
+  Madachy, R.; Reifer, D.J.; Steece, B.
+\newblock {\em Software Cost Estimation with {COCOMO II}}; Prentice Hall,
+  2000.
+
+\bibitem[Ostrand and Weyuker(2002)]{ostrand2002}
+Ostrand, T.J.; Weyuker, E.J.
+\newblock The distribution of faults in a large industrial software system.
+\newblock In Proceedings of the Proceedings of the International Symposium on
+  Software Testing and Analysis (ISSTA),  2002, pp. 55--64.
+\newblock {\url{https://doi.org/10.1145/566172.566181}}.
+
+\bibitem[Nagappan et~al.(2006)Nagappan, Ball, and Zeller]{nagappan2006}
+Nagappan, N.; Ball, T.; Zeller, A.
+\newblock Mining metrics to predict component failures.
+\newblock In Proceedings of the Proceedings of the International Conference on
+  Software Engineering (ICSE),  2006, pp. 452--461.
+\newblock {\url{https://doi.org/10.1145/1134285.1134349}}.
+
+\bibitem[Lessmann et~al.(2008)Lessmann, Baesens, Mues, and
+  Pietsch]{lessmann2008}
+Lessmann, S.; Baesens, B.; Mues, C.; Pietsch, S.
+\newblock Benchmarking Classification Models for Software Defect Prediction: A
+  Proposed Framework and Novel Findings.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2008}, {\em
+  34},~485--496.
+\newblock {\url{https://doi.org/10.1109/TSE.2008.35}}.
+
+\bibitem[Kamei et~al.(2013)Kamei, Shihab, Adams, Hassan, Mockus, Sinha, and
+  Ubayashi]{kamei2013}
+Kamei, Y.; Shihab, E.; Adams, B.; Hassan, A.E.; Mockus, A.; Sinha, A.;
+  Ubayashi, N.
+\newblock A Large-Scale Empirical Study of Just-in-Time Quality Assurance.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2013}, {\em
+  39},~757--773.
+\newblock {\url{https://doi.org/10.1109/TSE.2012.70}}.
+
+\bibitem[Arcoverde et~al.(2011)Arcoverde, Garcia, and
+  Figueiredo]{arcoverde2011}
+Arcoverde, R.; Garcia, A.; Figueiredo, E.
+\newblock Understanding the longevity of code smells: Preliminary results of an
+  explanatory survey.
+\newblock In Proceedings of the Proceedings of the International Workshop on
+  Refactoring Tools,  2011, pp. 33--36.
+\newblock {\url{https://doi.org/10.1145/1984732.1984740}}.
+
+\bibitem[Li et~al.(2015)Li, Avgeriou, and Liang]{li2015}
+Li, Z.; Avgeriou, P.; Liang, P.
+\newblock A systematic mapping study on technical debt and its management.
+\newblock {\em Journal of Systems and Software} {\bf 2015}, {\em
+  101},~193--220.
+\newblock {\url{https://doi.org/10.1016/j.jss.2014.12.027}}.
+
+\bibitem[Forsgren et~al.(2018)Forsgren, Humble, and Kim]{forsgren2018}
+Forsgren, N.; Humble, J.; Kim, G.
+\newblock {\em Accelerate: The Science of Lean Software and {DevOps}}; IT
+  Revolution Press,  2018.
+
+\bibitem[{Google Cloud}(2024)]{dora2024}
+{Google Cloud}.
+\newblock Accelerate State of {DevOps} Report 2024.
+\newblock Technical report, DORA,  2024.
+
+\bibitem[Hilton et~al.(2016)Hilton, Tunnell, Huang, Marinov, and
+  Dig]{hilton2016}
+Hilton, M.; Tunnell, T.; Huang, K.; Marinov, D.; Dig, D.
+\newblock Usage, costs, and benefits of continuous integration in open-source
+  projects.
+\newblock In Proceedings of the Proceedings of the International Conference on
+  Automated Software Engineering (ASE),  2016, pp. 426--437.
+\newblock {\url{https://doi.org/10.1145/2970276.2970358}}.
+
+\bibitem[Vasilescu et~al.(2015)Vasilescu, Yu, Wang, Devanbu, and
+  Filkov]{vasilescu2015}
+Vasilescu, B.; Yu, Y.; Wang, H.; Devanbu, P.; Filkov, V.
+\newblock Quality and productivity outcomes relating to continuous integration
+  in {GitHub}.
+\newblock In Proceedings of the Proceedings of the Joint Meeting on Foundations
+  of Software Engineering (ESEC/FSE),  2015, pp. 805--816.
+\newblock {\url{https://doi.org/10.1145/2786805.2786850}}.
+
+\bibitem[Gallaba and McIntosh(2020)]{gallaba2020}
+Gallaba, K.; McIntosh, S.
+\newblock Use and misuse of continuous integration features: An empirical study
+  of projects that (mis)use {Travis CI}.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2020}, {\em
+  46},~33--50.
+\newblock {\url{https://doi.org/10.1109/TSE.2018.2838131}}.
+
+\bibitem[Ghaleb et~al.(2019)Ghaleb, da~Costa, and Zou]{ghaleb2019}
+Ghaleb, T.A.; da~Costa, D.A.; Zou, Y.
+\newblock An Empirical Study of the Long Duration of Continuous Integration
+  Builds.
+\newblock {\em Empirical Software Engineering} {\bf 2019}, {\em
+  24},~2102--2139.
+\newblock {\url{https://doi.org/10.1007/s10664-019-09695-9}}.
+
+\bibitem[Beller et~al.(2017)Beller, Gousios, and Zaidman]{beller2017}
+Beller, M.; Gousios, G.; Zaidman, A.
+\newblock Oops, My Tests Broke the Build: An Explorative Analysis of {Travis
+  CI} with {GitHub}.
+\newblock In Proceedings of the Proceedings of the 14th International
+  Conference on Mining Software Repositories (MSR),  2017, pp. 356--367.
+\newblock {\url{https://doi.org/10.1109/MSR.2017.62}}.
+
+\bibitem[Saidani et~al.(2022)Saidani, Ouni, and Mkaouer]{saidani2022}
+Saidani, I.; Ouni, A.; Mkaouer, M.W.
+\newblock Improving the Prediction of Continuous Integration Build Failures
+  Using Deep Learning.
+\newblock {\em Automated Software Engineering} {\bf 2022}, {\em 29},~1--61.
+\newblock {\url{https://doi.org/10.1007/s10515-021-00319-5}}.
+
+\bibitem[Riungu-Kalliosaari et~al.(2016)Riungu-Kalliosaari, M\"{a}kinen,
+  Lwakatare, Tiihonen, and M\"{a}nnist\"{o}]{riungu2016}
+Riungu-Kalliosaari, L.; M\"{a}kinen, S.; Lwakatare, L.E.; Tiihonen, J.;
+  M\"{a}nnist\"{o}, T.
+\newblock {DevOps} adoption benefits and challenges in practice: A case study.
+\newblock In Proceedings of the Proceedings of the International Conference on
+  Product-Focused Software Process Improvement (PROFES),  2016.
+\newblock {\url{https://doi.org/10.1007/978-3-319-49094-6_44}}.
+
+\bibitem[Amaro et~al.(2024)Amaro, Pereira, and Mira~da
+  Silva]{devopsmetrics2024}
+Amaro, R.M.D.; Pereira, R.; Mira~da Silva, M.
+\newblock {DevOps} Metrics and {KPI}s: A Multivocal Literature Review.
+\newblock {\em ACM Computing Surveys} {\bf 2024}, {\em 56}.
+\newblock {\url{https://doi.org/10.1145/3652508}}.
+
+\bibitem[Brunnert et~al.(2015)Brunnert, van Hoorn, Willnecker, Danciu,
+  Hasselbring, Heger, Herbst, Kounev, Koziolek, Kro\ss{}, Spinner, and
+  V\"{o}gele]{brunnert2015}
+Brunnert, A.; van Hoorn, A.; Willnecker, F.; Danciu, A.; Hasselbring, W.;
+  Heger, C.; Herbst, N.; Kounev, S.; Koziolek, H.; Kro\ss{}, J.;  et~al.
+\newblock Performance-oriented {DevOps}: A Research Agenda.
+\newblock In Proceedings of the Companion Proceedings of the ACM/SPEC
+  International Conference on Performance Engineering (ICPE),  2015.
+
+\bibitem[Fallahzadeh et~al.(2023)Fallahzadeh, Bavand, and
+  Rigby]{parallelci2023}
+Fallahzadeh, E.; Bavand, A.H.; Rigby, P.C.
+\newblock Accelerating Continuous Integration with Parallel Batch Testing.
+\newblock In Proceedings of the Proceedings of the 31st ACM Joint European
+  Software Engineering Conference and Symposium on the Foundations of Software
+  Engineering (ESEC/FSE),  2023.
+\newblock {\url{https://doi.org/10.1145/3611643.3616255}}.
+
+\bibitem[Menzies et~al.(2007)Menzies, Greenwald, and Frank]{menzies2007}
+Menzies, T.; Greenwald, J.; Frank, A.
+\newblock Data mining static code attributes to learn defect predictors.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2007}, {\em
+  33},~2--13.
+\newblock {\url{https://doi.org/10.1109/TSE.2007.256941}}.
+
+\bibitem[Hall et~al.(2012)Hall, Beecham, Bowes, Gray, and Counsell]{hall2012}
+Hall, T.; Beecham, S.; Bowes, D.; Gray, D.; Counsell, S.
+\newblock A systematic literature review on fault prediction performance in
+  software engineering.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2012}, {\em
+  38},~1276--1304.
+\newblock {\url{https://doi.org/10.1109/TSE.2011.103}}.
+
+\bibitem[Zhang et~al.(2019)Zhang, Wang, Zhang, Sun, Wang, and Liu]{zhang2019}
+Zhang, J.; Wang, X.; Zhang, H.; Sun, H.; Wang, K.; Liu, X.
+\newblock A Novel Neural Source Code Representation Based on Abstract Syntax
+  Tree.
+\newblock In Proceedings of the Proceedings of the 41st International
+  Conference on Software Engineering (ICSE),  2019, pp. 783--794.
+\newblock {\url{https://doi.org/10.1109/ICSE.2019.00086}}.
+
+\bibitem[Allamanis et~al.(2018)Allamanis, Barr, Devanbu, and
+  Sutton]{allamanis2018}
+Allamanis, M.; Barr, E.T.; Devanbu, P.; Sutton, C.
+\newblock A survey of machine learning for big code and naturalness.
+\newblock {\em ACM Computing Surveys} {\bf 2018}, {\em 51},~1--37.
+\newblock {\url{https://doi.org/10.1145/3212695}}.
+
+\bibitem[Chen et~al.(2020)Chen, Chen, Zhang, and Peng]{chen2020buildfast}
+Chen, B.; Chen, L.; Zhang, C.; Peng, X.
+\newblock {BuildFast}: History-Aware Build Outcome Prediction for Fast Feedback
+  and Reduced Cost in Continuous Integration.
+\newblock In Proceedings of the Proceedings of the 35th IEEE/ACM International
+  Conference on Automated Software Engineering (ASE),  2020, pp. 42--53.
+\newblock {\url{https://doi.org/10.1145/3324884.3416616}}.
+
+\bibitem[Mishra et~al.(2026)Mishra, Rangari, Nagrare, and
+  Nayak]{mishra2026leakage}
+Mishra, L.N.; Rangari, A.; Nagrare, S.; Nayak, S.K.
+\newblock A Taxonomy for Detecting and Preventing Temporal Data Leakage in
+  Machine Learning-Based Build Prediction: A Dual-Platform Empirical
+  Validation.
+\newblock {\em PLOS ONE} {\bf 2026}, {\em 21},~e0340167.
+\newblock {\url{https://doi.org/10.1371/journal.pone.0340167}}.
+
+\bibitem[Wu et~al.(2023)Wu, Chai, Li, Liu, Li, Yang, and
+  Jiang]{wu2023incidents}
+Wu, Y.; Chai, B.; Li, Y.; Liu, B.; Li, J.; Yang, Y.; Jiang, W.
+\newblock An Empirical Study on Change-Induced Incidents of Online Service
+  Systems.
+\newblock In Proceedings of the Proceedings of the IEEE/ACM 45th International
+  Conference on Software Engineering: Software Engineering in Practice
+  (ICSE-SEIP),  2023, pp. 234--245.
+\newblock {\url{https://doi.org/10.1109/ICSE-SEIP58684.2023.00027}}.
+
+\bibitem[Nistor et~al.(2013)Nistor, Song, Marinov, and Lu]{nistor2013}
+Nistor, A.; Song, L.; Marinov, D.; Lu, S.
+\newblock Toddler: Detecting performance problems via similar memory-access
+  patterns.
+\newblock In Proceedings of the Proceedings of the International Conference on
+  Software Engineering (ICSE),  2013, pp. 562--571.
+\newblock {\url{https://doi.org/10.1109/ICSE.2013.6606602}}.
+
+\bibitem[Siegmund et~al.(2015)Siegmund, Grebhahn, Apel, and
+  K\"{a}stner]{siegmund2015}
+Siegmund, N.; Grebhahn, A.; Apel, S.; K\"{a}stner, C.
+\newblock Performance-Influence Models for Highly Configurable Systems.
+\newblock In Proceedings of the Proceedings of the Joint Meeting on Foundations
+  of Software Engineering (ESEC/FSE),  2015, pp. 284--294.
+\newblock {\url{https://doi.org/10.1145/2786805.2786845}}.
+
+\bibitem[Ha and Zhang(2019)]{ha2019}
+Ha, H.; Zhang, H.
+\newblock {DeepPerf}: Performance Prediction for Configurable Software with
+  Deep Sparse Neural Network.
+\newblock In Proceedings of the Proceedings of the 41st International
+  Conference on Software Engineering (ICSE),  2019, pp. 1095--1106.
+\newblock {\url{https://doi.org/10.1109/ICSE.2019.00113}}.
+
+\bibitem[Nair et~al.(2020)Nair, Yu, Menzies, Siegmund, and Apel]{nair2020}
+Nair, V.; Yu, Z.; Menzies, T.; Siegmund, N.; Apel, S.
+\newblock Finding Faster Configurations Using {FLASH}.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2020}, {\em
+  46},~794--811.
+\newblock {\url{https://doi.org/10.1109/TSE.2018.2870895}}.
+
+\bibitem[Guo et~al.(2018)Guo, Yang, Siegmund, Apel, Sarkar, Valov, Czarnecki,
+  Wasowski, and Yu]{guo2018}
+Guo, J.; Yang, D.; Siegmund, N.; Apel, S.; Sarkar, A.; Valov, P.; Czarnecki,
+  K.; Wasowski, A.; Yu, H.
+\newblock Data-efficient Performance Learning for Configurable Systems.
+\newblock {\em Empirical Software Engineering} {\bf 2018}, {\em
+  23},~1826--1867.
+\newblock {\url{https://doi.org/10.1007/s10664-017-9573-6}}.
+
+\bibitem[Jamshidi et~al.(2017)Jamshidi, Velez, K\"{a}stner, Siegmund, and
+  Kawthekar]{jamshidi2017}
+Jamshidi, P.; Velez, M.; K\"{a}stner, C.; Siegmund, N.; Kawthekar, P.
+\newblock Transfer Learning for Improving Model Predictions in Highly
+  Configurable Software.
+\newblock In Proceedings of the Proceedings of the 12th International Symposium
+  on Software Engineering for Adaptive and Self-Managing Systems (SEAMS),
+  2017.
+\newblock {\url{https://doi.org/10.1109/SEAMS.2017.11}}.
+
+\bibitem[Jamshidi et~al.(2018)Jamshidi, Velez, K\"{a}stner, and
+  Siegmund]{jamshidi2018}
+Jamshidi, P.; Velez, M.; K\"{a}stner, C.; Siegmund, N.
+\newblock Learning to sample: Exploiting similarities across environments to
+  learn performance models for configurable systems.
+\newblock In Proceedings of the Proceedings of the Joint Meeting on Foundations
+  of Software Engineering (ESEC/FSE),  2018, pp. 71--82.
+\newblock {\url{https://doi.org/10.1145/3236024.3236074}}.
+
+\bibitem[Maros et~al.(2019)Maros, Murai, da~Silva, Almeida, Lattuada, Gianniti,
+  Hosseini, and Ardagna]{sparkml2019}
+Maros, A.; Murai, F.; da~Silva, A.P.C.; Almeida, J.M.; Lattuada, M.; Gianniti,
+  E.; Hosseini, M.; Ardagna, D.
+\newblock Machine Learning for Performance Prediction of {Spark} Cloud
+  Applications.
+\newblock In Proceedings of the Proceedings of the IEEE 12th International
+  Conference on Cloud Computing (CLOUD),  2019, pp. 99--106.
+\newblock {\url{https://doi.org/10.1109/CLOUD.2019.00028}}.
+
+\bibitem[Tantithamthavorn et~al.(2017)Tantithamthavorn, McIntosh, Hassan, and
+  Matsumoto]{tantithamthavorn2016}
+Tantithamthavorn, C.; McIntosh, S.; Hassan, A.E.; Matsumoto, K.
+\newblock An Empirical Comparison of Model Validation Techniques for Defect
+  Prediction Models.
+\newblock {\em IEEE Transactions on Software Engineering} {\bf 2017}, {\em
+  43},~1--18.
+\newblock {\url{https://doi.org/10.1109/TSE.2016.2584050}}.
+
+\bibitem[Liao et~al.(2025)Liao, Eismann, Li, Bezemer, Costa, van Hoorn, and
+  Shang]{earlydetection2024}
+Liao, L.; Eismann, S.; Li, H.; Bezemer, C.P.; Costa, D.E.; van Hoorn, A.;
+  Shang, W.
+\newblock Early Detection of Performance Regressions by Bridging Local
+  Performance Data and Architectural Models.
+\newblock In Proceedings of the Proceedings of the 47th IEEE/ACM International
+  Conference on Software Engineering (ICSE),  2025.
+\newblock {\url{https://doi.org/10.1109/ICSE55347.2025.00026}}.
+
+\bibitem[Biringa and Kul(2024)]{pace2023}
+Biringa, C.; Kul, G.
+\newblock {PACE}: A Program Analysis Framework for Continuous Performance
+  Prediction.
+\newblock {\em ACM Transactions on Software Engineering and Methodology} {\bf
+  2024}.
+\newblock {\url{https://doi.org/10.1145/3637230}}.
+
+\bibitem[Mboweni et~al.(2022)Mboweni, Masombuka, and Dongmo]{mldevops2022}
+Mboweni, T.; Masombuka, T.; Dongmo, C.
+\newblock A Systematic Review of Machine Learning {DevOps}.
+\newblock In Proceedings of the Proceedings of the International Conference on
+  Electrical, Computer and Energy Technologies (ICECET),  2022.
+\newblock {\url{https://doi.org/10.1109/ICECET55527.2022.9872968}}.
+
+\bibitem[Mohapatra et~al.(2025)Mohapatra, Pramanik, and Mishra]{mlsdlc2024}
+Mohapatra, H.; Pramanik, S.; Mishra, S.R.
+\newblock Revolutionizing Software Development: The Transformative Influence of
+  Machine Learning Integrated {SDLC} Model. In {\em Boosting Software
+  Development Using Machine Learning}; Springer,  2025; Vol.~7, {\em Artificial
+  Intelligence-Enhanced Software and Systems Engineering}.
+\newblock {\url{https://doi.org/10.1007/978-3-031-88188-6_3}}.
+
+\bibitem[Behera et~al.(2025)Behera, Chaudhury, and Dash]{reliability2025}
+Behera, A.K.; Chaudhury, P.; Dash, C.S.K.
+\newblock A Comprehensive Survey on Intelligent Software Reliability
+  Prediction.
+\newblock {\em Discover Computing} {\bf 2025}.
+\newblock {\url{https://doi.org/10.1007/s10791-025-09597-z}}.
+
+\bibitem[Zhou et~al.(2019)Zhou, Peng, Xie, Sun, Ji, Liu, Xiang, and
+  He]{zhou2019}
+Zhou, X.; Peng, X.; Xie, T.; Sun, J.; Ji, C.; Liu, D.; Xiang, Q.; He, C.
+\newblock Latent Error Prediction and Fault Localization for Microservice
+  Applications by Learning from System Trace Logs.
+\newblock In Proceedings of the Proceedings of the 27th ACM Joint European
+  Software Engineering Conference and Symposium on the Foundations of Software
+  Engineering (ESEC/FSE),  2019, pp. 683--694.
+\newblock {\url{https://doi.org/10.1145/3338906.3338961}}.
+
+\bibitem[Dang et~al.(2019)Dang, Lin, and Huang]{dang2019}
+Dang, Y.; Lin, Q.; Huang, P.
+\newblock {AIOps}: Real-World Challenges and Research Innovations.
+\newblock In Proceedings of the Proceedings of the 41st IEEE/ACM International
+  Conference on Software Engineering: Companion (ICSE-Companion),  2019, pp.
+  4--5.
+\newblock {\url{https://doi.org/10.1109/ICSE-Companion.2019.00023}}.
+
+\bibitem[Notaro et~al.(2021)Notaro, Cardoso, and Gerndt]{notaro2021}
+Notaro, P.; Cardoso, J.; Gerndt, M.
+\newblock A Survey of {AIOps} Methods for Failure Management.
+\newblock {\em ACM Transactions on Intelligent Systems and Technology} {\bf
+  2021}, {\em 12},~1--45.
+\newblock {\url{https://doi.org/10.1145/3483424}}.
+
+\bibitem[Diaz-De-Arcaya et~al.(2024)Diaz-De-Arcaya, Torre-Bastida, Z\'{a}rate,
+  Mi\~{n}\'{o}n, and Almeida]{diazdearcaya2024}
+Diaz-De-Arcaya, J.; Torre-Bastida, A.I.; Z\'{a}rate, G.; Mi\~{n}\'{o}n, R.;
+  Almeida, A.
+\newblock A Joint Study of the Challenges, Opportunities, and Roadmap of
+  {MLOps} and {AIOps}: A Systematic Survey.
+\newblock {\em ACM Computing Surveys} {\bf 2024}, {\em 56},~1--30.
+\newblock {\url{https://doi.org/10.1145/3625289}}.
+
+\bibitem[Basiri et~al.(2016)Basiri, Behnam, de~Rooij, Hochstein, Kosewski,
+  Reynolds, and Rosenthal]{basiri2016}
+Basiri, A.; Behnam, N.; de~Rooij, R.; Hochstein, L.; Kosewski, L.; Reynolds,
+  J.; Rosenthal, C.
+\newblock Chaos Engineering.
+\newblock {\em IEEE Software} {\bf 2016}, {\em 33},~35--41.
+\newblock {\url{https://doi.org/10.1109/MS.2016.60}}.
+
+\bibitem[Rosenthal and Jones(2020)]{rosenthal2020}
+Rosenthal, C.; Jones, N.
+\newblock {\em Chaos Engineering: System Resiliency in Practice}; O'Reilly
+  Media,  2020.
+
+\bibitem[Beller et~al.(2017)Beller, Gousios, and
+  Zaidman]{beller2017travistorrent}
+Beller, M.; Gousios, G.; Zaidman, A.
+\newblock {TravisTorrent}: Synthesizing {Travis CI} and {GitHub} for Full-Stack
+  Research on Continuous Integration.
+\newblock In Proceedings of the Proceedings of the 14th International
+  Conference on Mining Software Repositories (MSR),  2017, pp. 447--450.
+\newblock {\url{https://doi.org/10.1109/MSR.2017.24}}.
+
+\bibitem[Nelsen(2006)]{nelsen2006}
+Nelsen, R.B.
+\newblock {\em An Introduction to Copulas}, 2nd ed.; Springer,  2006.
+\newblock {\url{https://doi.org/10.1007/0-387-28678-0}}.
+
+\bibitem[Higham(2002)]{higham2002}
+Higham, N.J.
+\newblock Computing the Nearest Correlation Matrix---A Problem from Finance.
+\newblock {\em IMA Journal of Numerical Analysis} {\bf 2002}, {\em
+  22},~329--343.
+\newblock {\url{https://doi.org/10.1093/imanum/22.3.329}}.
+
+\bibitem[Guyon et~al.(2002)Guyon, Weston, Barnhill, and Vapnik]{guyon2002}
+Guyon, I.; Weston, J.; Barnhill, S.; Vapnik, V.
+\newblock Gene Selection for Cancer Classification using Support Vector
+  Machines.
+\newblock {\em Machine Learning} {\bf 2002}, {\em 46},~389--422.
+\newblock {\url{https://doi.org/10.1023/A:1012487302797}}.
+
+\bibitem[Breiman(2001)]{breiman2001}
+Breiman, L.
+\newblock Random Forests.
+\newblock {\em Machine Learning} {\bf 2001}, {\em 45},~5--32.
+\newblock {\url{https://doi.org/10.1023/A:1010933404324}}.
+
+\bibitem[Friedman(2001)]{friedman2001}
+Friedman, J.H.
+\newblock Greedy Function Approximation: A Gradient Boosting Machine.
+\newblock {\em The Annals of Statistics} {\bf 2001}, {\em 29},~1189--1232.
+\newblock {\url{https://doi.org/10.1214/aos/1013203451}}.
+
+\bibitem[Gama et~al.(2014)Gama, \v{Z}liobait\.{e}, Bifet, Pechenizkiy, and
+  Bouchachia]{gama2014}
+Gama, J.a.; \v{Z}liobait\.{e}, I.; Bifet, A.; Pechenizkiy, M.; Bouchachia, A.
+\newblock A Survey on Concept Drift Adaptation.
+\newblock {\em ACM Computing Surveys} {\bf 2014}, {\em 46},~1--37.
+\newblock {\url{https://doi.org/10.1145/2523813}}.
+
+\bibitem[Besbes et~al.(2025)Besbes, Damasceno~Costa, Mujahid, Castelluccio, and
+  Mierzwinski]{perfherder2025}
+Besbes, M.B.; Damasceno~Costa, D.E.; Mujahid, S.; Castelluccio, M.;
+  Mierzwinski, G.
+\newblock Mozilla Performance Time Series Dataset,  2025.
+\newblock CC-BY-4.0, {\url{https://doi.org/10.5281/zenodo.14642238}}.
+
+\bibitem[Moriconi et~al.(2024)Moriconi, Durieux, Falleri, Troncy, and
+  Francillon]{ghalogs2024}
+Moriconi, F.; Durieux, T.; Falleri, J.R.; Troncy, R.; Francillon, A.
+\newblock {GHALogs}: Large-Scale Dataset of {GitHub} Actions Runs,  2024.
+\newblock CC-BY-SA-4.0, {\url{https://doi.org/10.5281/zenodo.10154920}}.
+
+\bibitem[Robredo et~al.(2025)Robredo, Esposito, Taibi, Pe\~{n}aloza, and
+  Lenarduzzi]{squad2025}
+Robredo, M.; Esposito, M.; Taibi, D.; Pe\~{n}aloza, R.; Lenarduzzi, V.
+\newblock {SQuaD}: The Software Quality Dataset,  2025.
+\newblock CC-BY-4.0. Submitted to the MSR Data and Tool Showcase Track.,
+  {\url{https://doi.org/10.5281/zenodo.17566690}}.
+
+\bibitem[Shankar et~al.(2024)Shankar, Garcia, Hellerstein, and
+  Parameswaran]{shankar2022}
+Shankar, S.; Garcia, R.; Hellerstein, J.M.; Parameswaran, A.G.
+\newblock Operationalizing Machine Learning: An Interview Study.
+\newblock {\em Journal of Machine Learning Research} {\bf 2024}, {\em
+  25},~1--45.
+
+\end{thebibliography}
