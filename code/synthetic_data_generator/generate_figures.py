@@ -39,7 +39,7 @@ _PAPER_IMAGES_DIR = Path("/Volumes/4TB/presto/paper-work/overleaf/images")
 # ---------------------------------------------------------------------------
 # Style constants
 # ---------------------------------------------------------------------------
-_DPI = 300
+_DPI = 500
 _TITLE_SIZE = 13
 _LABEL_SIZE = 11
 _TICK_SIZE = 10
