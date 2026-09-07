@@ -1,0 +1,27 @@
+  ... 200/1000
+  ... 400/1000
+  ... 600/1000
+  ... 800/1000
+  ... 1000/1000
+Domain: abc-cloud-provider  n_train=136  n_test=34  p=241
+
+## Baseline comparison (Gradient Boosting, 241 SDLC-only features)
+Model                                R2      MAE     RMSE
+Gradient Boosting (241 feat)      0.251    0.295    0.604
+Naive Mean                       -0.429    0.768    0.834
+Persistence (Last Value)         -1.334    0.571    1.066
+DORA-Only GB (4 metrics)         -1.639    0.789    1.134
+
+## Multi-seed stability
+Gradient Boosting    seeds=[42, 123, 456, 789, 2024] R2s=[0.251, 0.252, 0.439, 0.28, 0.32] mean=0.308 std=0.070
+Random Forest        seeds=[42, 123, 456, 789, 2024] R2s=[0.268, 0.225, 0.321, -0.096, 0.282] mean=0.200 std=0.151
+
+## Residual diagnostics (GB, seed 42, n_test=34)
+Durbin-Watson: 1.791
+Shapiro-Wilk: stat=0.7123 p=0.000001
+ACF lags 1-5: [np.float64(-0.1), np.float64(-0.012), np.float64(0.088), np.float64(0.169), np.float64(0.096)]  (95% bound +/- 0.336)
+
+## Permutation test (1000 permutations, GB, TimeSeriesSplit n=5)
+Observed CV R2: -0.5162
+Null distribution: mean=-7.4309 std=50.1505
+Permutation p-value: 0.2228

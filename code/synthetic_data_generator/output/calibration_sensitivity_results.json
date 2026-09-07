@@ -1,0 +1,269 @@
+{
+  "ar1_recovery": {
+    "target_ar1_rho": 0.6,
+    "system_uptime_lag1_autocorr": 0.026916920650609355,
+    "within_paper_stated_range_0.55_0.65": false,
+    "all_metrics_pass_rate": 0.8353658536585366,
+    "all_metrics_total": 164,
+    "all_metrics_passed": 137,
+    "autocorr_tolerance": 0.2
+  },
+  "correlation_pair_counts": {
+    "target_correlations": 21,
+    "cross_phase_correlations": 15,
+    "intra_phase_correlations_in_yaml": 48,
+    "applied_to_copula": 36,
+    "all_specified_in_yaml": 84
+  },
+  "correlation_distance": {
+    "applied_pairs_only": {
+      "n_pairs": 36,
+      "pass_rate": 0.5555555555555556,
+      "frobenius_norm": 6.148343029809289
+    },
+    "all_yaml_specified_pairs": {
+      "n_pairs": 84,
+      "pass_rate": 0.25,
+      "frobenius_norm": 11.81363996322827
+    }
+  },
+  "ks_full_registry_aggregate": {
+    "total": 164,
+    "passed": 59,
+    "pass_rate": 0.3597560975609756
+  },
+  "ks_spot_checks": [
+    {
+      "metric": "System Uptime (%)",
+      "family": "beta",
+      "checked_against": "metric_registry.py base params",
+      "params": {
+        "a": 15.0,
+        "b": 1.0
+      },
+      "bounds": [
+        85.0,
+        100.0
+      ],
+      "ks_stat": 0.8117647043823528,
+      "p_value": 1.9395280453007428e-122,
+      "n": 170
+    },
+    {
+      "metric": "System Uptime (%)",
+      "family": "beta",
+      "checked_against": "domain_profiles.yaml target_overrides (documented but NOT applied by generate.py)",
+      "params": {
+        "a": 15,
+        "b": 1.2,
+        "loc": 92,
+        "scale": 8
+      },
+      "bounds": [
+        92.0,
+        100.0
+      ],
+      "ks_stat": 0.8117647058587685,
+      "p_value": 1.9395252779682917e-122,
+      "n": 170
+    },
+    {
+      "metric": "Mean Time to Recovery (MTTR) (Minutes)",
+      "family": "lognormal",
+      "checked_against": "metric_registry.py base params (matches domain override closely: mu 2.8 vs 2.9)",
+      "params": {
+        "mu": 2.8,
+        "sigma": 0.7
+      },
+      "bounds": [
+        0.0,
+        120.0
+      ],
+      "ks_stat": 0.05297781386033007,
+      "p_value": 0.7061573971397581,
+      "n": 170
+    },
+    {
+      "metric": "Production Incident Count",
+      "family": "poisson",
+      "checked_against": "metric_registry.py base params (lam=8)",
+      "params": {
+        "lam": 8.0
+      },
+      "bounds": [
+        0.0,
+        50.0
+      ],
+      "ks_stat": 0.1401536704917169,
+      "p_value": 0.0022426962112446986,
+      "n": 170
+    },
+    {
+      "metric": "Production Incident Count",
+      "family": "poisson",
+      "checked_against": "domain_profiles.yaml target_overrides (documented but NOT applied by generate.py; lam=12)",
+      "params": {
+        "lam": 12.0
+      },
+      "bounds": [
+        0.0,
+        60.0
+      ],
+      "ks_stat": 0.4880647000928868,
+      "p_value": 7.6067752811307e-38,
+      "n": 170
+    },
+    {
+      "metric": "Code Smells",
+      "family": "negative_binomial (as documented in metric_registry.py)",
+      "checked_against": "metric_registry.py's stated negative_binomial(n=3.0, p=0.03)",
+      "params": {
+        "n": 3.0,
+        "p": 0.03
+      },
+      "bounds": [
+        0.0,
+        500.0
+      ],
+      "ks_stat": 0.07962143023737212,
+      "p_value": 0.21937752574740865,
+      "n": 170,
+      "note": "fraction of non-integer generated values: 0.924"
+    },
+    {
+      "metric": "Code Smells",
+      "family": "gamma (actual copula-engine substitute)",
+      "checked_against": "moment-matched Gamma(shape=2.910, scale=33.333) used internally by generate.py._translate_distribution_params()",
+      "params": {
+        "shape": 2.910000000000001,
+        "scale": 33.33333333333333
+      },
+      "bounds": [
+        0.0,
+        500.0
+      ],
+      "ks_stat": 0.08226707748453854,
+      "p_value": 0.1893556822971113,
+      "n": 170
+    }
+  ],
+  "target_overrides_applied_check": [
+    {
+      "metric": "System Uptime (%)",
+      "override_bounds": [
+        92.0,
+        100.0
+      ],
+      "realized_range": [
+        88.4,
+        100.0
+      ],
+      "violates_override_bounds": true
+    },
+    {
+      "metric": "Mean Time to Recovery (MTTR) (Minutes)",
+      "override_bounds": [
+        0.0,
+        120.0
+      ],
+      "realized_range": [
+        1.7,
+        115.1
+      ],
+      "violates_override_bounds": false
+    },
+    {
+      "metric": "Production Incident Count",
+      "override_bounds": [
+        0.0,
+        60.0
+      ],
+      "realized_range": [
+        1.0,
+        15.0
+      ],
+      "violates_override_bounds": false
+    }
+  ],
+  "sensitivity_sweep": [
+    {
+      "sweep": "baseline",
+      "param": "ar1_rho=0.60, corr_factor=1.0x, noise_mult=1.0x",
+      "value": "baseline",
+      "r2_without_ar": 0.2713040989852401,
+      "n_features_without_ar": 241,
+      "r2_with_ar": 0.9515456264969571,
+      "n_holdout": 34,
+      "frobenius_norm_applied_pairs": 6.148343029809289,
+      "system_uptime_lag1": 0.026916920650609355
+    },
+    {
+      "sweep": "ar1_rho",
+      "param": "ar1_rho",
+      "value": 0.5,
+      "r2_without_ar": 0.43941834091027054,
+      "n_features_without_ar": 241,
+      "r2_with_ar": null,
+      "n_holdout": 34,
+      "frobenius_norm_applied_pairs": 5.942953712973628,
+      "system_uptime_lag1": 0.018840585623727195
+    },
+    {
+      "sweep": "ar1_rho",
+      "param": "ar1_rho",
+      "value": 0.7,
+      "r2_without_ar": -0.38312535928761915,
+      "n_features_without_ar": 241,
+      "r2_with_ar": null,
+      "n_holdout": 34,
+      "frobenius_norm_applied_pairs": 6.643048059425594,
+      "system_uptime_lag1": 0.042336997049450764
+    },
+    {
+      "sweep": "corr_factor",
+      "param": "correlation_strength_multiplier",
+      "value": 0.7,
+      "r2_without_ar": 0.35028541973427096,
+      "n_features_without_ar": 241,
+      "r2_with_ar": null,
+      "n_holdout": 34,
+      "frobenius_norm_applied_pairs": 5.823720940668449,
+      "frobenius_norm_vs_original_target": 5.981412590555318,
+      "system_uptime_lag1": 0.029905207757686826
+    },
+    {
+      "sweep": "corr_factor",
+      "param": "correlation_strength_multiplier",
+      "value": 1.3,
+      "r2_without_ar": 0.29637104483270815,
+      "n_features_without_ar": 241,
+      "r2_with_ar": null,
+      "n_holdout": 34,
+      "frobenius_norm_applied_pairs": 6.675187655333135,
+      "frobenius_norm_vs_original_target": 6.332873706928117,
+      "system_uptime_lag1": 0.02336311415971104
+    },
+    {
+      "sweep": "noise_mult",
+      "param": "ar1_rank_noise_multiplier",
+      "value": 0.5,
+      "r2_without_ar": 0.2744223404993522,
+      "n_features_without_ar": 241,
+      "r2_with_ar": null,
+      "n_holdout": 34,
+      "frobenius_norm_applied_pairs": 6.159841892361775,
+      "system_uptime_lag1": 0.02293954366938292
+    },
+    {
+      "sweep": "noise_mult",
+      "param": "ar1_rank_noise_multiplier",
+      "value": 2.0,
+      "r2_without_ar": -0.02715091906561562,
+      "n_features_without_ar": 241,
+      "r2_with_ar": null,
+      "n_holdout": 34,
+      "frobenius_norm_applied_pairs": 6.177392638818166,
+      "system_uptime_lag1": 0.027918487527474698
+    }
+  ]
+}

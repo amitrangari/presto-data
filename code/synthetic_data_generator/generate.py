@@ -249,17 +249,15 @@ def _translate_distribution_params(
         return "gamma", {"alpha": shape, "beta": 1.0 / scale}
 
     if dist_type_name == "negative_binomial":
-        # Copula engine does not support negative_binomial natively.
-        # Approximate with a gamma distribution that has matching
-        # mean = n*(1-p)/p and variance = n*(1-p)/p^2.
-        n = registry_params["n"]
-        p = registry_params["p"]
-        mean = n * (1.0 - p) / p
-        var = n * (1.0 - p) / (p * p)
-        # Gamma: shape = mean^2/var, scale = var/mean
-        gamma_shape = (mean * mean) / var if var > 0 else 1.0
-        gamma_scale = var / mean if mean > 0 else 1.0
-        return "gamma", {"alpha": gamma_shape, "beta": 1.0 / gamma_scale}
+        # copula_engine.py's GaussianCopula now has a native negative_binomial
+        # builder (scipy.stats.nbinom(n, p)) whose parameterization matches
+        # metric_registry.py's NEGATIVE_BINOMIAL params exactly, so no
+        # translation is needed. (Previously this silently substituted a
+        # moment-matched, continuously-sampled Gamma distribution instead --
+        # see CALIBRATION_AND_SENSITIVITY_EVIDENCE.md finding 6 -- which
+        # neither matched the documented family nor rounded to integers for
+        # what the registry documents as count metrics.)
+        return "negative_binomial", dict(registry_params)
 
     # truncated_normal, lognormal, uniform: params match directly
     return dist_type_name, dict(registry_params)
@@ -368,6 +366,7 @@ def _collect_all_metrics(
 def _build_marginals(
     qualified_names: list[str],
     definitions: list[MetricDefinition],
+    target_overrides: Optional[dict[str, Any]] = None,
 ) -> dict[str, dict[str, Any]]:
     """Build the marginals specification dict for the copula engine.
 
@@ -377,21 +376,57 @@ def _build_marginals(
     Args:
         qualified_names: Phase-qualified metric names (copula's metric names).
         definitions: Corresponding MetricDefinition objects.
+        target_overrides: Optional per-domain override dict, as documented in
+            domain_profiles.yaml's `target_overrides` key (plain metric name
+            -> {distribution, params, bounds}). When a metric's plain name is
+            present, its domain-specific distribution/params/bounds are used
+            instead of the shared MetricRegistry definition. Override params
+            are passed through the same `_translate_distribution_params()`
+            translation as base registry params, so registry-style keys
+            (e.g. poisson's "lam", gamma's "shape"/"scale") are translated
+            the same way; beta overrides that already include "loc"/"scale"
+            pass through unchanged since `_translate_distribution_params`
+            only injects loc/scale when they are absent.
+            Matching is restricted to the PRODUCTION phase: every entry
+            currently in domain_profiles.yaml's target_overrides is a
+            production-context metric (System Uptime, MTTR, Production
+            Incident Count, etc.), and one name --
+            "Mean Time to Recovery (MTTR) (Minutes)" -- is also a distinct,
+            separately-calibrated metric in the CHAOS phase (chaos-drill
+            recovery time, not release MTTR). Matching by plain name alone
+            (without a phase restriction) would incorrectly apply a
+            production-intended override to that unrelated chaos metric too.
 
     Returns:
         Marginals dict mapping qualified name to {distribution, params, bounds}.
     """
+    target_overrides = target_overrides or {}
     marginals: dict[str, dict[str, Any]] = {}
     for qname, defn in zip(qualified_names, definitions):
-        dist_name, params = _translate_distribution_params(
-            defn.distribution_type.value, defn.params, defn.bounds
+        override = (
+            target_overrides.get(defn.name)
+            if defn.phase == Phase.PRODUCTION else None
         )
-        entry: dict[str, Any] = {
-            "distribution": dist_name,
-            "params": params,
-        }
-        if defn.bounds is not None:
-            entry["bounds"] = defn.bounds
+        if override is not None:
+            ov_bounds = tuple(override["bounds"]) if "bounds" in override else defn.bounds
+            dist_name, params = _translate_distribution_params(
+                override["distribution"], override["params"], ov_bounds
+            )
+            entry: dict[str, Any] = {
+                "distribution": dist_name,
+                "params": params,
+                "bounds": ov_bounds,
+            }
+        else:
+            dist_name, params = _translate_distribution_params(
+                defn.distribution_type.value, defn.params, defn.bounds
+            )
+            entry = {
+                "distribution": dist_name,
+                "params": params,
+            }
+            if defn.bounds is not None:
+                entry["bounds"] = defn.bounds
         marginals[qname] = entry
     return marginals
 
@@ -467,7 +502,18 @@ def _collect_correlation_pairs(
     all_raw_pairs: list[tuple[str, str, float]] = []
     for section in ["target_correlations", "intra_phase_correlations",
                     "cross_phase_correlations"]:
-        raw_pairs = correlation_config.get(section, [])
+        raw_section = correlation_config.get(section, [])
+        # `intra_phase_correlations` is a dict of phase name -> list of
+        # [metric_a, metric_b, rho] triples (see correlation_templates.yaml),
+        # not a flat list like the other two sections. Iterating a dict
+        # directly yields its string keys, which would silently fail the
+        # isinstance check below and drop every intra-phase pair. Flatten
+        # dict-shaped sections into their constituent triples first so all
+        # three sections are treated uniformly.
+        if isinstance(raw_section, dict):
+            raw_pairs = [item for sublist in raw_section.values() for item in sublist]
+        else:
+            raw_pairs = raw_section
         for item in raw_pairs:
             if isinstance(item, (list, tuple)) and len(item) == 3:
                 all_raw_pairs.append((str(item[0]), str(item[1]), float(item[2])))
@@ -596,7 +642,8 @@ def generate_domain(
         )
 
     # Step 2: Build marginals specification for copula
-    marginals = _build_marginals(qualified_names, definitions)
+    target_overrides = domain_config.get("target_overrides", {})
+    marginals = _build_marginals(qualified_names, definitions, target_overrides)
 
     # Step 3: Build correlation matrix
     correlation_pairs = _collect_correlation_pairs(
@@ -669,7 +716,7 @@ def generate_domain(
         logger.info("[%s] Applying temporal dynamics...", domain_name)
 
     temporal_engine = TemporalEngine(seed=seed)
-    bounds_map = _build_bounds_map(definitions, qualified_names)
+    bounds_map = _build_bounds_map(definitions, qualified_names, target_overrides)
 
     for phase_key in phase_data:
         df = phase_data[phase_key]
@@ -702,7 +749,7 @@ def generate_domain(
         )
 
         # 7e: Enforce bounds
-        phase_bounds = _get_phase_bounds(phase_key, definitions, qualified_names)
+        phase_bounds = _get_phase_bounds(phase_key, definitions, qualified_names, target_overrides)
         df = temporal_engine.enforce_bounds(df, phase_bounds)
 
         phase_data[phase_key] = df
@@ -741,7 +788,7 @@ def generate_domain(
     if validate:
         validation_results = _run_validation(
             domain_name, phase_data, correlation_config,
-            registry, domain_dir, verbose,
+            registry, domain_dir, verbose, target_overrides,
         )
 
     return validation_results
@@ -750,20 +797,33 @@ def generate_domain(
 def _build_bounds_map(
     definitions: list[MetricDefinition],
     qualified_names: list[str],
+    target_overrides: Optional[dict[str, Any]] = None,
 ) -> dict[str, tuple[float, float]]:
     """Build a plain-name to bounds mapping from metric definitions.
 
     When the same plain name appears in multiple phases, the widest bounds
-    (union of all phases' bounds) are used.
+    (union of all phases' bounds) are used. When a domain-specific
+    `target_overrides` bounds entry exists for a metric, it replaces the
+    registry-derived bounds entirely (rather than being unioned with them),
+    so the final `enforce_bounds` clipping step is consistent with the
+    override distribution actually sampled in `_build_marginals` -- without
+    this, a metric could be sampled from a narrower domain-specific range
+    but then clipped against the wider shared-registry bounds, letting
+    temporal dynamics (AR1/trend/shocks) push it back outside the override's
+    documented range.
 
     Args:
         definitions: All MetricDefinition objects.
         qualified_names: Corresponding phase-qualified names.
+        target_overrides: Optional per-domain override dict (see
+            `_build_marginals`).
 
     Returns:
         Dict mapping plain metric name to (lower, upper) bounds.
     """
+    target_overrides = target_overrides or {}
     bounds: dict[str, tuple[float, float]] = {}
+    production_names = {d.name for d in definitions if d.phase == Phase.PRODUCTION}
     for defn in definitions:
         name = defn.name
         lo, hi = defn.bounds
@@ -772,6 +832,13 @@ def _build_bounds_map(
             bounds[name] = (min(lo, existing_lo), max(hi, existing_hi))
         else:
             bounds[name] = (lo, hi)
+    for name, override in target_overrides.items():
+        # See _build_marginals: restrict to the PRODUCTION-phase occurrence
+        # so a production-intended override does not also clobber an
+        # unrelated same-named metric in another phase (e.g. chaos-drill
+        # MTTR vs. release MTTR).
+        if "bounds" in override and name in production_names:
+            bounds[name] = tuple(override["bounds"])
     return bounds
 
 
@@ -779,23 +846,44 @@ def _get_phase_bounds(
     exporter_key: str,
     definitions: list[MetricDefinition],
     qualified_names: list[str],
+    target_overrides: Optional[dict[str, Any]] = None,
 ) -> dict[str, tuple[float, float]]:
     """Get bounds for metrics belonging to a specific phase (by exporter key).
+
+    This is what `generate_domain()`'s Step 7e (`enforce_bounds`) actually
+    uses to clip each phase's final values (the similarly-named
+    `_build_bounds_map()` result is computed but never consumed). When a
+    domain-specific `target_overrides` bounds entry exists for a metric, it
+    replaces the registry-derived bounds so the final clip is consistent
+    with the override distribution actually sampled in `_build_marginals`.
 
     Args:
         exporter_key: The exporter phase key (e.g., "production", "performance").
         definitions: All MetricDefinition objects.
         qualified_names: Corresponding phase-qualified names.
+        target_overrides: Optional per-domain override dict (see
+            `_build_marginals`).
 
     Returns:
         Dict mapping plain metric name to (lower, upper) bounds for the phase.
     """
+    target_overrides = target_overrides or {}
     bounds: dict[str, tuple[float, float]] = {}
     for qname, defn in zip(qualified_names, definitions):
         phase_value = defn.phase.value
         mapped_key = _PHASE_TO_EXPORTER_KEY.get(phase_value, phase_value)
         if mapped_key == exporter_key:
             bounds[defn.name] = defn.bounds
+    # Restrict override application to the production phase call (see
+    # _build_marginals docstring): a plain-name-only match here would
+    # otherwise also overwrite an unrelated same-named metric's bounds in
+    # whatever *other* phase this function is called for (e.g. applying a
+    # production-intended MTTR override to the distinct chaos-drill MTTR
+    # metric when called with exporter_key="chaos").
+    if exporter_key == "production":
+        for name, override in target_overrides.items():
+            if name in bounds and "bounds" in override:
+                bounds[name] = tuple(override["bounds"])
     return bounds
 
 
@@ -810,6 +898,7 @@ def _run_validation(
     registry: MetricRegistry,
     domain_dir: Path,
     verbose: bool,
+    target_overrides: Optional[dict[str, Any]] = None,
 ) -> dict[str, Any]:
     """Run post-generation statistical validation.
 
@@ -829,10 +918,18 @@ def _run_validation(
         registry: MetricRegistry for expected distributions.
         domain_dir: Output directory for saving the report.
         verbose: Whether to print the validation report.
+        target_overrides: Optional per-domain override dict (see
+            `_build_marginals`). Passed through so the bounds check compares
+            production-phase override metrics against their own override
+            bounds rather than the shared base-registry bounds, which would
+            otherwise now flag a false violation for any domain whose
+            override widens or shifts a metric's range relative to the base
+            registry.
 
     Returns:
         Validation results dictionary.
     """
+    target_overrides = target_overrides or {}
     if verbose:
         logger.info("[%s] Running validation...", domain_name)
 
@@ -857,7 +954,8 @@ def _run_validation(
                     continue
                 try:
                     metric = registry.get_phase_metric(col, phase)
-                    lo, hi = metric.bounds
+                    override = target_overrides.get(col) if phase == Phase.PRODUCTION else None
+                    lo, hi = tuple(override["bounds"]) if override and "bounds" in override else metric.bounds
                     min_val = float(df[col].min())
                     max_val = float(df[col].max())
                     if min_val < lo - 0.01 or max_val > hi + 0.01:

@@ -1,0 +1,37 @@
+## Top 20 features (permutation importance, normalized)
+  1  Test Environment Availability (%)                   42.92%  [test]
+  2  Test Pass Rate (%)                                  10.58%  [test]
+  3  stability_score                                      5.25%  [Cross-Phase]
+  4  Build Artifact Integrity (%)                         4.95%  [build]
+  5  Customer Satisfaction Score (1-10)_lag_5             3.21%  [production]
+  6  Business Value Score (1-10)                          2.56%  [requirements]
+  7  Build Success Rate (%)                               2.34%  [build]
+  8  Build Success Rate (%)_diff_1                        2.32%  [build]
+  9  Requirements Change Rate (Changes/Week)              2.12%  [requirements]
+ 10  Customer Satisfaction Score (1-10)_rolling_std_3     1.63%  [production]
+ 11  Build Success Rate (%)_diff_3                        1.60%  [build]
+ 12  Requirements Density (Req/Feature)                   1.37%  [requirements]
+ 13  Code Review Turnaround Time (Hours)                  1.33%  [code]
+ 14  Commits per Release                                  1.25%  [code]
+ 15  Customer Satisfaction Score (1-10)_pct_change_1      1.24%  [production]
+ 16  Feature Acceptance Rate (%)                          1.00%  [uat]
+ 17  Performance Test Automation Rate (%)                 0.99%  [performance_test]
+ 18  Production Data Quality Score (1-10)                 0.98%  [production]
+ 19  Code Duplication Rate (%)                            0.89%  [code]
+ 20  Customer Satisfaction Score (1-10)_pct_change_2      0.89%  [production]
+
+## Phase-level aggregation (all features)
+test                  53.65%
+build                 13.64%
+production             9.40%
+requirements           6.93%
+Cross-Phase            5.25%
+code                   4.83%
+performance_test       2.21%
+chaos                  1.76%
+uat                    1.72%
+Unknown                0.61%
+
+Sum check: 100.00% (should be ~100%)
+
+Features with unresolved phase mapping (3): ['Mean Time to Recovery (MTTR) (Minutes)_chaos_testing_metrics', 'Unit Test Coverage (%)_test_metrics', 'Integration Test Coverage (%)_test_metrics']

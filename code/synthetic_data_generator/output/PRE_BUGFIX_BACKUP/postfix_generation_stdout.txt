@@ -1,0 +1,219 @@
+2026-09-07 19:03:09 [INFO] PRESTO Synthetic SDLC Dataset Generator v1.0.0
+2026-09-07 19:03:09 [INFO] Output directory: /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/output
+2026-09-07 19:03:09 [INFO] Loading domain profiles from /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/config/domain_profiles.yaml
+2026-09-07 19:03:09 [INFO] Loading correlation templates from /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/config/correlation_templates.yaml
+2026-09-07 19:03:09 [INFO] Metric registry loaded: 164 metrics across 8 phases.
+2026-09-07 19:03:09 [INFO] Domains to generate: ['abc-cloud-provider', 'xyz-sales-force', 'card-payment-processor']
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Starting generation: 170 releases, seed=42
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Collected 164 metrics across 8 phases.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Building correlation matrix with 93 specified pairs.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Generating 170 samples via Gaussian Copula (164 x 164 matrix).
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider]   Phase 'production': 20 metrics, 170 rows.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider]   Phase 'build': 20 metrics, 170 rows.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider]   Phase 'code': 24 metrics, 170 rows.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider]   Phase 'test': 21 metrics, 170 rows.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider]   Phase 'performance': 20 metrics, 170 rows.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider]   Phase 'chaos': 20 metrics, 170 rows.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider]   Phase 'requirements': 19 metrics, 170 rows.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider]   Phase 'uat': 20 metrics, 170 rows.
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Generated release metadata: {'Minor': 95, 'Patch': 43, 'Major': 32}
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Applying temporal dynamics...
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Exporting CSV files...
+/Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/generate.py:767: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "generated_at": datetime.utcnow().isoformat() + "Z",
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Exported to /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/output/abc-cloud-provider
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Running validation...
+/Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/generate.py:906: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z",
+2026-09-07 19:03:09 [INFO] [abc-cloud-provider] Validation FAILED. Report saved to /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/output/abc-cloud-provider/validation_report.json
+2026-09-07 19:03:09 [WARNING] [abc-cloud-provider] Generation completed in 0.8s but validation FAILED.
+2026-09-07 19:03:09 [INFO] [xyz-sales-force] Starting generation: 200 releases, seed=123
+2026-09-07 19:03:09 [INFO] [xyz-sales-force] Collected 164 metrics across 8 phases.
+2026-09-07 19:03:09 [INFO] [xyz-sales-force] Building correlation matrix with 93 specified pairs.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force] Generating 200 samples via Gaussian Copula (164 x 164 matrix).
+2026-09-07 19:03:10 [INFO] [xyz-sales-force]   Phase 'production': 20 metrics, 200 rows.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force]   Phase 'build': 20 metrics, 200 rows.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force]   Phase 'code': 24 metrics, 200 rows.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force]   Phase 'test': 21 metrics, 200 rows.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force]   Phase 'performance': 20 metrics, 200 rows.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force]   Phase 'chaos': 20 metrics, 200 rows.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force]   Phase 'requirements': 19 metrics, 200 rows.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force]   Phase 'uat': 20 metrics, 200 rows.
+2026-09-07 19:03:10 [INFO] [xyz-sales-force] Generated release metadata: {'Minor': 111, 'Patch': 50, 'Major': 39}
+2026-09-07 19:03:10 [INFO] [xyz-sales-force] Applying temporal dynamics...
+2026-09-07 19:03:10 [INFO] [xyz-sales-force] Exporting CSV files...
+/Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/generate.py:767: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "generated_at": datetime.utcnow().isoformat() + "Z",
+2026-09-07 19:03:10 [INFO] [xyz-sales-force] Exported to /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/output/xyz-sales-force
+2026-09-07 19:03:10 [INFO] [xyz-sales-force] Running validation...
+/Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/generate.py:906: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z",
+2026-09-07 19:03:10 [INFO] [xyz-sales-force] Validation FAILED. Report saved to /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/output/xyz-sales-force/validation_report.json
+2026-09-07 19:03:10 [WARNING] [xyz-sales-force] Generation completed in 0.9s but validation FAILED.
+2026-09-07 19:03:10 [INFO] [card-payment-processor] Starting generation: 150 releases, seed=456
+2026-09-07 19:03:10 [INFO] [card-payment-processor] Collected 164 metrics across 8 phases.
+2026-09-07 19:03:10 [INFO] [card-payment-processor] Building correlation matrix with 93 specified pairs.
+2026-09-07 19:03:10 [INFO] [card-payment-processor] Generating 150 samples via Gaussian Copula (164 x 164 matrix).
+2026-09-07 19:03:10 [INFO] [card-payment-processor]   Phase 'production': 20 metrics, 150 rows.
+2026-09-07 19:03:10 [INFO] [card-payment-processor]   Phase 'build': 20 metrics, 150 rows.
+2026-09-07 19:03:10 [INFO] [card-payment-processor]   Phase 'code': 24 metrics, 150 rows.
+2026-09-07 19:03:10 [INFO] [card-payment-processor]   Phase 'test': 21 metrics, 150 rows.
+2026-09-07 19:03:10 [INFO] [card-payment-processor]   Phase 'performance': 20 metrics, 150 rows.
+2026-09-07 19:03:10 [INFO] [card-payment-processor]   Phase 'chaos': 20 metrics, 150 rows.
+2026-09-07 19:03:10 [INFO] [card-payment-processor]   Phase 'requirements': 19 metrics, 150 rows.
+2026-09-07 19:03:10 [INFO] [card-payment-processor]   Phase 'uat': 20 metrics, 150 rows.
+2026-09-07 19:03:10 [INFO] [card-payment-processor] Generated release metadata: {'Minor': 93, 'Patch': 34, 'Major': 23}
+2026-09-07 19:03:10 [INFO] [card-payment-processor] Applying temporal dynamics...
+2026-09-07 19:03:11 [INFO] [card-payment-processor] Exporting CSV files...
+/Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/generate.py:767: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "generated_at": datetime.utcnow().isoformat() + "Z",
+2026-09-07 19:03:11 [INFO] [card-payment-processor] Exported to /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/output/card-payment-processor
+2026-09-07 19:03:11 [INFO] [card-payment-processor] Running validation...
+/Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/generate.py:906: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat() + "Z",
+2026-09-07 19:03:11 [INFO] [card-payment-processor] Validation FAILED. Report saved to /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/output/card-payment-processor/validation_report.json
+2026-09-07 19:03:11 [WARNING] [card-payment-processor] Generation completed in 0.7s but validation FAILED.
+PRESTO Metric Registry Summary
+========================================
+  production          :  20 metrics (12 high importance)
+  build               :  20 metrics (4 high importance)
+  code                :  24 metrics (5 high importance)
+  test                :  21 metrics (5 high importance)
+  performance_test    :  20 metrics (6 high importance)
+  chaos               :  20 metrics (5 high importance)
+  requirements        :  19 metrics (0 high importance)
+  uat                 :  20 metrics (0 high importance)
+----------------------------------------
+  TOTAL               : 164 metrics (37 high importance)
+  Target metric: System Uptime (%)
+
+# Validation Report: abc-cloud-provider
+
+**Status:** FAILED
+**Generated:** 2026-09-07T23:03:09.920258Z
+
+## Bounds Check: FAIL
+
+| Phase | Metric | Expected | Actual |
+|-------|--------|----------|--------|
+| chaos | Mean Time to Recovery (MTTR) (Minutes) | (0.0, 30.0) | (2.9693, 105.7735) |
+
+## Completeness Check: PASS
+No missing values detected.
+
+## Correlation Check: PASS (20/21 within tolerance=0.5, pass_rate=95%)
+
+| Metric A | Metric B | Expected | Realized | Deviation | OK |
+|----------|----------|----------|----------|-----------|-----|
+| System Uptime (%) | Production Deployment Success  | 0.700 | 0.502 | 0.198 | yes |
+| System Uptime (%) | Production Monitoring Coverage | 0.600 | 0.290 | 0.310 | yes |
+| System Uptime (%) | Test Pass Rate (%) | 0.580 | 0.651 | 0.071 | yes |
+| System Uptime (%) | Regression Test Pass Rate (%) | 0.550 | 0.591 | 0.041 | yes |
+| System Uptime (%) | Performance SLA Compliance (%) | 0.720 | 0.515 | 0.205 | yes |
+| System Uptime (%) | Build Success Rate (%) | 0.550 | 0.405 | 0.145 | yes |
+| System Uptime (%) | Build Pipeline Efficiency (%) | 0.480 | 0.309 | 0.171 | yes |
+| System Uptime (%) | Resilience Score (1-10) | 0.620 | 0.268 | 0.352 | yes |
+| System Uptime (%) | Circuit Breaker Effectiveness  | 0.550 | 0.155 | 0.395 | yes |
+| System Uptime (%) | Failover Success Rate (%) | 0.600 | 0.402 | 0.198 | yes |
+| System Uptime (%) | Production Environment Health  | 0.650 | 0.304 | 0.346 | yes |
+| System Uptime (%) | Performance Baseline Achieveme | 0.500 | 0.428 | 0.072 | yes |
+| System Uptime (%) | System Availability (%) | 0.680 | 0.701 | 0.021 | yes |
+| System Uptime (%) | SLA Compliance Rate (%) | 0.600 | 0.472 | 0.128 | yes |
+| System Uptime (%) | Change Failure Rate (%) | -0.650 | -0.256 | 0.394 | yes |
+| System Uptime (%) | Defect Leakage (%) | -0.550 | -0.206 | 0.344 | yes |
+| System Uptime (%) | Rollback Rate (%) | -0.500 | -0.325 | 0.175 | yes |
+| System Uptime (%) | Production Incident Count | -0.600 | -0.181 | 0.419 | yes |
+| System Uptime (%) | Mean Time to Recovery (MTTR) ( | -0.580 | 0.025 | 0.605 | NO |
+| System Uptime (%) | Error Rate (%) | -0.520 | -0.171 | 0.349 | yes |
+| System Uptime (%) | Error Budget Consumption (%) | -0.450 | -0.197 | 0.253 | yes |
+
+# Validation Report: xyz-sales-force
+
+**Status:** FAILED
+**Generated:** 2026-09-07T23:03:10.775801Z
+
+## Bounds Check: FAIL
+
+| Phase | Metric | Expected | Actual |
+|-------|--------|----------|--------|
+| production | Feature Adoption Rate (%) | (30.0, 100.0) | (26.003, 100.0) |
+
+## Completeness Check: PASS
+No missing values detected.
+
+## Correlation Check: PASS (18/21 within tolerance=0.5, pass_rate=86%)
+
+| Metric A | Metric B | Expected | Realized | Deviation | OK |
+|----------|----------|----------|----------|-----------|-----|
+| System Uptime (%) | Production Deployment Success  | 0.700 | 0.537 | 0.163 | yes |
+| System Uptime (%) | Production Monitoring Coverage | 0.600 | 0.466 | 0.134 | yes |
+| System Uptime (%) | Test Pass Rate (%) | 0.580 | 0.490 | 0.090 | yes |
+| System Uptime (%) | Regression Test Pass Rate (%) | 0.550 | 0.506 | 0.044 | yes |
+| System Uptime (%) | Performance SLA Compliance (%) | 0.720 | 0.526 | 0.194 | yes |
+| System Uptime (%) | Build Success Rate (%) | 0.550 | 0.250 | 0.300 | yes |
+| System Uptime (%) | Build Pipeline Efficiency (%) | 0.480 | 0.187 | 0.293 | yes |
+| System Uptime (%) | Resilience Score (1-10) | 0.620 | 0.195 | 0.425 | yes |
+| System Uptime (%) | Circuit Breaker Effectiveness  | 0.550 | 0.212 | 0.338 | yes |
+| System Uptime (%) | Failover Success Rate (%) | 0.600 | 0.391 | 0.209 | yes |
+| System Uptime (%) | Production Environment Health  | 0.650 | 0.341 | 0.309 | yes |
+| System Uptime (%) | Performance Baseline Achieveme | 0.500 | 0.422 | 0.078 | yes |
+| System Uptime (%) | System Availability (%) | 0.680 | 0.720 | 0.040 | yes |
+| System Uptime (%) | SLA Compliance Rate (%) | 0.600 | 0.489 | 0.111 | yes |
+| System Uptime (%) | Change Failure Rate (%) | -0.650 | -0.060 | 0.590 | NO |
+| System Uptime (%) | Defect Leakage (%) | -0.550 | -0.020 | 0.530 | NO |
+| System Uptime (%) | Rollback Rate (%) | -0.500 | 0.040 | 0.540 | NO |
+| System Uptime (%) | Production Incident Count | -0.600 | -0.279 | 0.321 | yes |
+| System Uptime (%) | Mean Time to Recovery (MTTR) ( | -0.580 | -0.099 | 0.481 | yes |
+| System Uptime (%) | Error Rate (%) | -0.520 | -0.100 | 0.420 | yes |
+| System Uptime (%) | Error Budget Consumption (%) | -0.450 | -0.118 | 0.332 | yes |
+
+# Validation Report: card-payment-processor
+
+**Status:** FAILED
+**Generated:** 2026-09-07T23:03:11.491778Z
+
+## Bounds Check: FAIL
+
+| Phase | Metric | Expected | Actual |
+|-------|--------|----------|--------|
+| chaos | Mean Time to Recovery (MTTR) (Minutes) | (0.0, 30.0) | (2.0351, 31.5354) |
+
+## Completeness Check: PASS
+No missing values detected.
+
+## Correlation Check: PASS (19/21 within tolerance=0.5, pass_rate=90%)
+
+| Metric A | Metric B | Expected | Realized | Deviation | OK |
+|----------|----------|----------|----------|-----------|-----|
+| System Uptime (%) | Production Deployment Success  | 0.700 | 0.428 | 0.272 | yes |
+| System Uptime (%) | Production Monitoring Coverage | 0.600 | 0.398 | 0.202 | yes |
+| System Uptime (%) | Test Pass Rate (%) | 0.580 | 0.799 | 0.219 | yes |
+| System Uptime (%) | Regression Test Pass Rate (%) | 0.550 | 0.618 | 0.068 | yes |
+| System Uptime (%) | Performance SLA Compliance (%) | 0.720 | 0.458 | 0.262 | yes |
+| System Uptime (%) | Build Success Rate (%) | 0.550 | 0.810 | 0.260 | yes |
+| System Uptime (%) | Build Pipeline Efficiency (%) | 0.480 | 0.131 | 0.349 | yes |
+| System Uptime (%) | Resilience Score (1-10) | 0.620 | 0.241 | 0.379 | yes |
+| System Uptime (%) | Circuit Breaker Effectiveness  | 0.550 | 0.285 | 0.265 | yes |
+| System Uptime (%) | Failover Success Rate (%) | 0.600 | 0.373 | 0.227 | yes |
+| System Uptime (%) | Production Environment Health  | 0.650 | 0.248 | 0.402 | yes |
+| System Uptime (%) | Performance Baseline Achieveme | 0.500 | 0.327 | 0.173 | yes |
+| System Uptime (%) | System Availability (%) | 0.680 | 0.788 | 0.108 | yes |
+| System Uptime (%) | SLA Compliance Rate (%) | 0.600 | 0.449 | 0.151 | yes |
+| System Uptime (%) | Change Failure Rate (%) | -0.650 | -0.229 | 0.421 | yes |
+| System Uptime (%) | Defect Leakage (%) | -0.550 | 0.005 | 0.555 | NO |
+| System Uptime (%) | Rollback Rate (%) | -0.500 | -0.265 | 0.235 | yes |
+| System Uptime (%) | Production Incident Count | -0.600 | -0.180 | 0.420 | yes |
+| System Uptime (%) | Mean Time to Recovery (MTTR) ( | -0.580 | -0.006 | 0.574 | NO |
+| System Uptime (%) | Error Rate (%) | -0.520 | -0.122 | 0.398 | yes |
+| System Uptime (%) | Error Budget Consumption (%) | -0.450 | -0.204 | 0.246 | yes |
+
+
+============================================================
+Generation Summary
+============================================================
+  abc-cloud-provider             VALIDATION_FAILED
+  xyz-sales-force                VALIDATION_FAILED
+  card-payment-processor         VALIDATION_FAILED
+============================================================
+Output: /Volumes/4TB/research-data-and-code/zenado/presto-data/code/synthetic_data_generator/output
+

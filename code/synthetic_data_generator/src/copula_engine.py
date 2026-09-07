@@ -103,6 +103,19 @@ def _build_uniform(params: dict[str, float]) -> stats.rv_continuous:
     return stats.uniform(loc=low, scale=high - low)
 
 
+def _build_negative_binomial(params: dict[str, float]) -> stats.rv_discrete:
+    """Build a Negative Binomial distribution.
+
+    Expected params: n (number of successes, scipy's "r"), p (success
+    probability). Matches scipy.stats.nbinom's own parameterization
+    directly, and matches metric_registry.py's NEGATIVE_BINOMIAL params
+    (n, p), so no translation is needed in
+    generate.py::_translate_distribution_params() beyond passing the dict
+    through unchanged.
+    """
+    return stats.nbinom(n=params["n"], p=params["p"])
+
+
 _DISTRIBUTION_BUILDERS: dict[str, Any] = {
     "beta": _build_beta,
     "truncated_normal": _build_truncated_normal,
@@ -110,10 +123,11 @@ _DISTRIBUTION_BUILDERS: dict[str, Any] = {
     "poisson": _build_poisson,
     "gamma": _build_gamma,
     "uniform": _build_uniform,
+    "negative_binomial": _build_negative_binomial,
 }
 
 # Names of discrete distributions that require integer rounding
-_DISCRETE_DISTRIBUTIONS = {"poisson"}
+_DISCRETE_DISTRIBUTIONS = {"poisson", "negative_binomial"}
 
 
 # ---------------------------------------------------------------------------

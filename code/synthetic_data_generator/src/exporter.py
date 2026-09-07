@@ -53,6 +53,8 @@ _INTEGER_KEYWORDS: list[str] = [
     "security vulnerabilities",
     "number of requirements",
     "build security scan results",
+    "code smells",
+    "static analysis issues",
 ]
 
 # Columns whose values get 2-decimal precision (scores, densities, rates < 1).
