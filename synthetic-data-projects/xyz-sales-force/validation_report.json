@@ -1,6 +1,6 @@
 {
   "domain": "xyz-sales-force",
-  "timestamp": "2026-08-09T03:54:59.978603Z",
+  "timestamp": "2026-09-07T23:06:02.171885Z",
   "checks": {
     "bounds": {
       "passed": true,
@@ -13,24 +13,24 @@
     "correlations": {
       "passed": true,
       "tolerance": 0.5,
-      "pass_rate": 0.81,
-      "n_within": 17,
+      "pass_rate": 0.857,
+      "n_within": 18,
       "n_total": 21,
       "checks": [
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Production Deployment Success Rate (%)",
           "expected": 0.7,
-          "realized": 0.511,
-          "deviation": 0.189,
+          "realized": 0.537,
+          "deviation": 0.163,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Production Monitoring Coverage (%)",
           "expected": 0.6,
-          "realized": 0.431,
-          "deviation": 0.169,
+          "realized": 0.466,
+          "deviation": 0.134,
           "within_tolerance": true
         },
         {
@@ -45,144 +45,144 @@
           "metric_a": "System Uptime (%)",
           "metric_b": "Regression Test Pass Rate (%)",
           "expected": 0.55,
-          "realized": 0.637,
-          "deviation": 0.087,
+          "realized": 0.506,
+          "deviation": 0.044,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Performance SLA Compliance (%)",
           "expected": 0.72,
-          "realized": 0.515,
-          "deviation": 0.205,
+          "realized": 0.526,
+          "deviation": 0.194,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Build Success Rate (%)",
           "expected": 0.55,
-          "realized": 0.2,
-          "deviation": 0.35,
+          "realized": 0.25,
+          "deviation": 0.3,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Build Pipeline Efficiency (%)",
           "expected": 0.48,
-          "realized": 0.189,
-          "deviation": 0.291,
+          "realized": 0.187,
+          "deviation": 0.293,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Resilience Score (1-10)",
           "expected": 0.62,
-          "realized": 0.179,
-          "deviation": 0.441,
+          "realized": 0.195,
+          "deviation": 0.425,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Circuit Breaker Effectiveness (%)",
           "expected": 0.55,
-          "realized": 0.178,
-          "deviation": 0.372,
+          "realized": 0.212,
+          "deviation": 0.338,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Failover Success Rate (%)",
           "expected": 0.6,
-          "realized": 0.301,
-          "deviation": 0.299,
+          "realized": 0.391,
+          "deviation": 0.209,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Production Environment Health Score (1-10)",
           "expected": 0.65,
-          "realized": 0.374,
-          "deviation": 0.276,
+          "realized": 0.341,
+          "deviation": 0.309,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Performance Baseline Achievement (%)",
           "expected": 0.5,
-          "realized": 0.389,
-          "deviation": 0.111,
+          "realized": 0.422,
+          "deviation": 0.078,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "System Availability (%)",
           "expected": 0.68,
-          "realized": 0.692,
-          "deviation": 0.012,
+          "realized": 0.72,
+          "deviation": 0.04,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "SLA Compliance Rate (%)",
           "expected": 0.6,
-          "realized": 0.527,
-          "deviation": 0.073,
+          "realized": 0.489,
+          "deviation": 0.111,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Change Failure Rate (%)",
           "expected": -0.65,
-          "realized": -0.087,
-          "deviation": 0.563,
+          "realized": -0.06,
+          "deviation": 0.59,
           "within_tolerance": false
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Defect Leakage (%)",
           "expected": -0.55,
-          "realized": -0.047,
-          "deviation": 0.503,
+          "realized": -0.02,
+          "deviation": 0.53,
           "within_tolerance": false
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Rollback Rate (%)",
           "expected": -0.5,
-          "realized": 0.054,
-          "deviation": 0.554,
+          "realized": 0.04,
+          "deviation": 0.54,
           "within_tolerance": false
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Production Incident Count",
           "expected": -0.6,
-          "realized": -0.255,
-          "deviation": 0.345,
+          "realized": -0.279,
+          "deviation": 0.321,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Mean Time to Recovery (MTTR) (Minutes)",
           "expected": -0.58,
-          "realized": -0.062,
-          "deviation": 0.518,
-          "within_tolerance": false
+          "realized": -0.099,
+          "deviation": 0.481,
+          "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Error Rate (%)",
           "expected": -0.52,
-          "realized": -0.101,
-          "deviation": 0.419,
+          "realized": -0.1,
+          "deviation": 0.42,
           "within_tolerance": true
         },
         {
           "metric_a": "System Uptime (%)",
           "metric_b": "Error Budget Consumption (%)",
           "expected": -0.45,
-          "realized": -0.22,
-          "deviation": 0.23,
+          "realized": -0.118,
+          "deviation": 0.332,
           "within_tolerance": true
         }
       ]

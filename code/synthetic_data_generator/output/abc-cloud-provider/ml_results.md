@@ -51,11 +51,11 @@ Found **32** target-derived features (rolling/lag of 'System Uptime (%)'):
 
 | Model | CV R2 (mean +/- std) | Holdout R2 | Holdout MAE | Holdout RMSE |
 |-------|----------------------|------------|-------------|--------------|
-| Random Forest | 0.5386 +/- 0.3391 | 0.9141 | 0.0863 | 0.1865 |
-| Gradient Boosting | -0.0473 +/- 0.6924 | 0.8514 | 0.0986 | 0.2453 |
+| Random Forest | -0.7161 +/- 1.8760 | 0.1946 | 0.2859 | 0.5711 |
 | Lasso Regression | -0.1511 +/- 0.9148 | -0.0204 | 0.5570 | 0.6429 |
-| Ridge Regression | -0.9276 +/- 1.8044 | -0.5917 | 0.5943 | 0.8029 |
-| Linear Regression | -0.9882 +/- 1.8419 | -0.6488 | 0.6140 | 0.8172 |
+| Gradient Boosting | -2.2762 +/- 2.9748 | -1.8333 | 0.4694 | 1.0712 |
+| Ridge Regression | -3.6945 +/- 5.1359 | -11.2860 | 1.6765 | 2.2307 |
+| Linear Regression | -3.9443 +/- 5.3642 | -13.3405 | 1.8389 | 2.4100 |
 
 ## Model Performance (WITHOUT target-derived features)
 

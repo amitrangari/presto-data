@@ -10,7 +10,7 @@
     "trend_strength": 0.03,
     "shock_probability": 0.03
   },
-  "n_correlation_pairs": 38,
+  "n_correlation_pairs": 93,
   "phases": [
     "production",
     "build",
@@ -21,6 +21,6 @@
     "requirements",
     "uat"
   ],
-  "generated_at": "2026-08-09T03:55:00.696506Z",
+  "generated_at": "2026-09-07T23:06:02.909154Z",
   "generator_version": "1.0.0"
 }

@@ -44,7 +44,7 @@ sys.path.insert(0, str(_SCRIPT_DIR))
 
 import run_pipeline as rp  # noqa: E402
 
-DATA_ROOT = Path("/Volumes/4TB/research-data/presto/synthetic-data-projects")
+DATA_ROOT = Path("/Volumes/4TB/research-data-and-code/zenado/presto-data/synthetic-data-projects")
 SIG_LEVEL = 0.05
 MAX_MAIN_EFFECTS = 15  # guard against unbounded growth given n=136 training rows
 

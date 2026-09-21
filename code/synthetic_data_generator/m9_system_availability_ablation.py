@@ -26,7 +26,7 @@ sys.path.insert(0, str(_SCRIPT_DIR))
 
 import run_pipeline as rp  # noqa: E402
 
-DATA_ROOT = Path("/Volumes/4TB/research-data/presto/synthetic-data-projects")
+DATA_ROOT = Path("/Volumes/4TB/research-data-and-code/zenado/presto-data/synthetic-data-projects")
 ABLATED_FEATURE = "System Availability (%)"
 
 

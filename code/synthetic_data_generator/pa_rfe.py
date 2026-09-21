@@ -53,7 +53,7 @@ sys.path.insert(0, str(SCRIPT_DIR))
 
 import run_pipeline as pipe  # noqa: E402  (reuse load_and_merge / engineer_features / prepare_features)
 
-CANONICAL_DATA_DIR = Path("/Volumes/4TB/research-data/presto/synthetic-data-projects")
+CANONICAL_DATA_DIR = Path("/Volumes/4TB/research-data-and-code/zenado/presto-data/synthetic-data-projects")
 ALL_DOMAINS = ["abc-cloud-provider", "card-payment-processor", "xyz-sales-force"]
 
 PHASE_ORDER = [

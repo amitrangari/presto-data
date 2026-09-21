@@ -43,20 +43,20 @@ PHASES = [
 ]
 
 MODELS_WITHOUT_AR = [
-    ("Random Forest", 0.268, True),
-    ("Gradient Boosting", 0.251, False),
-    ("Lasso", 0.129, False),
-    ("Ridge", -7.285, False),
-    ("Linear Regression", -9.124, False),
+    ("Ridge", 0.108, True),
+    ("Gradient Boosting", 0.215, False),
+    ("Random Forest", 0.190, False),
+    ("Lasso", -0.020, False),
+    ("Linear Regression", -6.946, False),
 ]
 
 PHASE_IMPORTANCE = [
-    ("Testing", 53.6),
-    ("Build", 13.6),
-    ("Production", 9.4),
-    ("Requirements", 6.9),
-    ("Cross-Phase", 5.3),
-    ("Code", 4.8),
+    ("Build", 32.1),
+    ("Test", 21.1),
+    ("Production", 19.7),
+    ("Requirements", 12.7),
+    ("Code", 4.9),
+    ("UAT", 3.8),
 ]
 
 COL_BG = ["#eaf1fb", "#fdeeea", "#fff8e1", "#eafaf0"]
@@ -88,7 +88,7 @@ def generate() -> None:
     fig.text(
         0.5, 0.93,
         "164 raw metrics, 8 SDLC phases -> 273 engineered features -> 5 scikit-learn models, "
-        "no hyperparameter search",
+        "nested cross-validation selection (Section 3.2.5)",
         ha="center", va="top", fontsize=10.5, color="#444444",
     )
 
@@ -142,7 +142,7 @@ def generate() -> None:
 
     # ---------------- Panel 3: Model Comparison ----------------
     _rounded_panel(ax, xs[2], y0, col_w, h, COL_BG[2], COL_ACCENT[2])
-    fig.text(xs[2] + col_w / 2, y0 + h - 0.035, "Model Comparison\n(ABC Cloud, without AR)",
+    fig.text(xs[2] + col_w / 2, y0 + h - 0.035, "Model Comparison\n(ABC Cloud, nested-CV selected)",
               ha="center", va="top", fontsize=12, fontweight="bold", color=COL_ACCENT[2])
     bar_left = xs[2] + 0.03
     bar_axis_w = col_w - 0.09
@@ -164,22 +164,22 @@ def generate() -> None:
             (x_lo, yy - 0.024), max(x_hi - x_lo, 0.002), 0.026,
             facecolor=bcolor, edgecolor="none", transform=ax.transAxes, zorder=3,
         ))
-        label = f"R² = {r2:.3f}" + (" ✓ best" if is_best else "")
+        label = f"R² = {r2:.3f}" + (" ✓ nested-selected" if is_best else "")
         fig.text(bar_left + bar_axis_w + 0.01, yy - 0.011, label, ha="left", va="center",
                   fontsize=8.5, color=bcolor, fontweight="bold" if is_best else "normal")
         yy -= 0.115
     fig.text(xs[2] + col_w / 2, y0 + 0.06,
-              "With AR (history) features:\nRandom Forest R² = 0.950",
-              ha="center", va="bottom", fontsize=8.5, color="#444444")
+              "With AR (history) features: R² ≈ 0.11\n(was 0.914; collapsed once a second,\nprev. undisclosed leakage bug was fixed)",
+              ha="center", va="bottom", fontsize=8, color="#444444")
     fig.text(xs[2] + col_w / 2, y0 + 0.02,
-              "~72% of that gain is autoregressive\npersistence, not SDLC signal",
+              "with-AR no longer beats without-AR --\nboth CIs now include zero",
               ha="center", va="bottom", fontsize=7.5, color="#666666")
 
     # ---------------- Panel 4: Key Results ----------------
     _rounded_panel(ax, xs[3], y0, col_w, h, COL_BG[3], COL_ACCENT[3])
     fig.text(xs[3] + col_w / 2, y0 + h - 0.035, "Key Results",
               ha="center", va="top", fontsize=12, fontweight="bold", color=COL_ACCENT[3])
-    fig.text(xs[3] + col_w / 2, y0 + h - 0.1, "R² = 0.25–0.36", ha="center",
+    fig.text(xs[3] + col_w / 2, y0 + h - 0.1, "R² = 0.11–0.62", ha="center",
               va="top", fontsize=19, fontweight="bold", color=COL_ACCENT[3])
     fig.text(xs[3] + col_w / 2, y0 + h - 0.14, "SDLC process features alone,\nacross 3 enterprise domains",
               ha="center", va="top", fontsize=8, color="#444444")
@@ -198,7 +198,7 @@ def generate() -> None:
                   ha="left", va="center", fontsize=8)
         yy -= 0.05
     fig.text(xs[3] + col_w / 2, yy - 0.01,
-              "Testing outweighs Code 11:1 -- hypothesis,\nunverified on real SDLC data",
+              "Build outweighs Code 6.6:1 -- hypothesis,\nunverified on real SDLC data",
               ha="center", va="top", fontsize=7.3, style="italic", color="#666666")
 
     fig.text(xs[3] + 0.02, y0 + 0.135, "Potential applications:", fontsize=9,
@@ -216,10 +216,11 @@ def generate() -> None:
 
     fig.text(
         0.5, 0.035,
-        "Real-world validation (TravisTorrent, Mozilla Perfherder, GHALogs) reported separately -- "
+        "Real-world validation (TravisTorrent, Mozilla Perfherder, GHALogs, SQuaD) reported separately -- "
         "synthetic-domain R² alone reflects the copula generator's hand-specified structure "
-        "(confirmed by ablation), not independently discovered signal.",
-        ha="center", va="bottom", fontsize=8, color="#666666", style="italic",
+        "(confirmed by ablation), not independently discovered signal. Confirmatory evidence limited "
+        "to SQuaD (CVE-count, enriched defect-fix) and Perfherder (AR-persistence).",
+        ha="center", va="bottom", fontsize=7.3, color="#666666", style="italic",
     )
 
     gf._save_figure(fig, "00-Graphical-Abstract.png")
