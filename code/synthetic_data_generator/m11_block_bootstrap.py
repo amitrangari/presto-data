@@ -190,9 +190,12 @@ def render_report(results: list[dict], n_boot: int, seed: int) -> str:
     )
     lines.append("")
     lines.append(
-        "**Scope:** the 3 synthetic domains only (temporally-ordered by construction). "
-        "TravisTorrent and Mozilla Perfherder (also temporally ordered) would need this same "
-        "treatment in their own adapter scripts -- not done here, flagged as follow-on scope. "
+        "**Scope:** the 3 synthetic domains only (temporally-ordered by construction), all 6 "
+        "domain/condition combinations (with-AR and without-AR for each of the 3 domains). "
+        "TravisTorrent and Mozilla Perfherder (also temporally ordered) receive this same "
+        "treatment in their own adapter scripts -- see "
+        "`real-data/travistorrent/TRAVISTORRENT_BLOCK_BOOTSTRAP_EVIDENCE.md` and "
+        "`real-data/mozilla-perfherder/PERFHERDER_BLOCK_BOOTSTRAP_EVIDENCE.md`. "
         "GHALogs and SQuaD are cross-sectional (no temporal ordering within their holdouts), so "
         "the existing pairs bootstrap remains the statistically appropriate choice there and "
         "should NOT be replaced with a block bootstrap."
@@ -246,7 +249,9 @@ def main() -> None:
     cases = [
         ("abc-cloud-provider", "with_AR"),
         ("abc-cloud-provider", "without_AR"),
+        ("card-payment-processor", "with_AR"),
         ("card-payment-processor", "without_AR"),
+        ("xyz-sales-force", "with_AR"),
         ("xyz-sales-force", "without_AR"),
     ]
     results = []
