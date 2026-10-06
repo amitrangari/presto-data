@@ -8,7 +8,7 @@ per-file hard limit entirely since nothing here comes close.
 ## 1. Push to GitHub
 
 ```bash
-cd /Volumes/4TB/zenado/presto-data
+cd /Volumes/4TB/research-data-and-code/zenado/presto-data
 git init -b main
 git add -A
 git commit -m "Initial commit: PRESTO research compendium"
@@ -55,6 +55,29 @@ four source datasets this compendium derives from. Open the new deposit on Zenod
   relation **isSupplementTo** or **isPartOf**, and push an update — Zenodo versions releases, so
   this doesn't require a new DOI, just a new version of the existing record (create a new GitHub
   release `v1.0.1` etc.).
+
+## 5. Releasing a new version (e.g. v2.0.0 for the v6 manuscript)
+
+The Zenodo integration is already enabled for this repo, so each new GitHub release becomes a new
+**version** of the same Zenodo record: a new version DOI, under the unchanged concept DOI
+`10.5281/zenodo.22005438`.
+
+```bash
+cd /Volumes/4TB/research-data-and-code/zenado/presto-data
+git switch main && git merge --no-ff v6-revision
+git push origin main
+git tag -a v2.0.0 -m "PRESTO research compendium v2.0.0 (matches v6 manuscript)"
+git push origin v2.0.0
+gh release create v2.0.0 --title "v2.0.0" --notes "Matches the round-3 (v6) revision of the MDPI Technologies manuscript."
+```
+
+Then: wait for the new version on Zenodo, note its version DOI, and put either that version DOI
+or the concept DOI (`10.5281/zenodo.22005438`, always resolves to the latest) into the
+manuscript's Data Availability Statement and Reproducibility paragraph, `CITATION.cff` (`doi:`),
+and `README.md`.
+
+Version history so far: v1.0.0 / v1.0.1 = initial August 2026 snapshot (v3 manuscript), DOI
+`10.5281/zenodo.22005439`.
 
 ## What this DOI does and doesn't include
 

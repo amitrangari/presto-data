@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software or the data derived from it, please cite it as below, and cite the paper it accompanies."
+title: "PRESTO: A Framework for Predicting Software System Performance from SDLC Metrics (Design and Proof-of-Concept Evaluation) — Research Compendium"
+type: software
+authors:
+  - family-names: Rangari
+    given-names: "Amit J."
+    affiliation: "JPMorgan Chase & Co."
+    orcid: "https://orcid.org/0009-0009-9419-1015"
+    email: amitrangari@ieee.org
+  - family-names: Mishra
+    given-names: "Lalit Narayan"
+    affiliation: "Lowe's Companies Inc."
+    orcid: "https://orcid.org/0009-0007-2638-1592"
+  - family-names: Senapati
+    given-names: Biswaranjan
+    affiliation: "University of Arkansas at Little Rock"
+    orcid: "https://orcid.org/0000-0002-0717-5888"
+version: 2.0.0
+date-released: "2026-10-06"
+repository-code: "https://github.com/amitrangari/presto-data"
+license: MIT
+# Concept DOI: resolves to the latest version. Replace with the v2.0.0 version DOI once Zenodo mints it, if preferred.
+doi: 10.5281/zenodo.22005438
+preferred-citation:
+  type: article
+  title: "PRESTO: A Framework for Predicting Software System Performance from SDLC Metrics (Design and Proof-of-Concept Evaluation)"
+  authors:
+    - family-names: Rangari
+      given-names: "Amit J."
+    - family-names: Mishra
+      given-names: "Lalit Narayan"
+    - family-names: Senapati
+      given-names: Biswaranjan
+  journal: "Technologies"
+  publisher:
+    name: MDPI
+  year: 2026
+  # doi: 10.xxxx/xxxxx   # fill in once the manuscript DOI is assigned
