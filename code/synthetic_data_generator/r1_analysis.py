@@ -36,7 +36,7 @@ sys.path.insert(0, str(SCRIPT_DIR))
 import generate as gen  # noqa: E402
 import run_pipeline as pipe  # noqa: E402
 
-CANONICAL_DATA_DIR = Path("/Volumes/4TB/research-data/presto/synthetic-data-projects")
+CANONICAL_DATA_DIR = Path("/Volumes/4TB/research-data-and-code/zenado/presto-data/synthetic-data-projects")
 ABLATION_OUT = SCRIPT_DIR / "output" / "r1_ablation"
 ALL_DOMAINS = ["abc-cloud-provider", "card-payment-processor", "xyz-sales-force"]
 PRIMARY_DOMAIN = "abc-cloud-provider"

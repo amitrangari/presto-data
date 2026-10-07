@@ -197,17 +197,36 @@ def add_rolling_features(df: pd.DataFrame, verbose: bool = False) -> pd.DataFram
 
 
 def add_lag_features(df: pd.DataFrame, verbose: bool = False) -> pd.DataFrame:
-    """Add lag, pct_change, and diff features for key metrics."""
+    """Add lag, pct_change, and diff features for key metrics.
+
+    v4 fix (PRESTO revision, AR-ACF audit), TARGET COLUMN ONLY: for
+    TARGET_COLUMN, pct_change_k and diff_k were previously computed against
+    the CURRENT, unshifted row (df_out[metric]), making them algebraic
+    identities of the current-row target when combined with lag_k
+    (target_t = lag_k + diff_k exactly). Only lag_k was genuinely prior-period.
+    This mirrors add_rolling_features's already-correct pattern: shift the
+    series by 1 first, so every target-derived lag/diff/pct_change feature at
+    row t describes strictly-prior releases only, never row t itself.
+
+    This fix is scoped to TARGET_COLUMN specifically, not every metric in
+    LAG_METRICS: for non-target metrics (Build Success Rate, Customer
+    Satisfaction Score, Throughput), the current row's own value is a
+    legitimate contemporaneous feature (known at release t's own prediction
+    time, same as using the raw metric directly), so an unshifted diff_k/
+    pct_change_k for those metrics is not a leakage problem and is left
+    unchanged -- shifting them would just make otherwise-fine features
+    needlessly stale without fixing anything.
+    """
     df_out = df.copy()
     metrics = _available(df_out.columns, LAG_METRICS)
     added = 0
     for metric in metrics:
+        is_target = metric == TARGET_COLUMN
+        base = df_out[metric].shift(1) if is_target else df_out[metric]
         for lag in LAG_STEPS:
             df_out[f"{metric}_lag_{lag}"] = df_out[metric].shift(lag)
-            df_out[f"{metric}_pct_change_{lag}"] = df_out[metric].pct_change(
-                periods=lag
-            )
-            df_out[f"{metric}_diff_{lag}"] = df_out[metric] - df_out[metric].shift(lag)
+            df_out[f"{metric}_pct_change_{lag}"] = base.pct_change(periods=lag)
+            df_out[f"{metric}_diff_{lag}"] = base - base.shift(lag)
             added += 3
     if verbose:
         print(f"  Lag features added: {added} columns")

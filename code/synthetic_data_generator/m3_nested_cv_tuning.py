@@ -87,7 +87,7 @@ def tune_and_evaluate(X: pd.DataFrame, y: pd.Series, estimator_cls, verbose: boo
     }
 
 
-DATA_ROOT = Path("/Volumes/4TB/research-data/presto/synthetic-data-projects")
+DATA_ROOT = Path("/Volumes/4TB/research-data-and-code/zenado/presto-data/synthetic-data-projects")
 
 
 def run_domain(domain: str, verbose: bool = False) -> dict:

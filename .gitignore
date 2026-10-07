@@ -2,3 +2,18 @@
 __pycache__/
 *.pyc
 .venv/
+
+# Bulk third-party raw data (not re-hosted; see real-data/README.md and each
+# source's DOWNLOAD.md for retrieval instructions) -- added v4 revision
+real-data/ghalogs/*.json.gz
+real-data/ghalogs/run_features.csv
+real-data/mozilla-perfherder/*.zip
+real-data/mozilla-perfherder/timeseries-data/
+real-data/mozilla-perfherder/alerts_data.csv
+real-data/mozilla-perfherder/bugs_data.csv
+real-data/travistorrent/*.csv.gz
+real-data/travistorrent/seven_projects.csv
+
+# Working backups / caches from this session, not part of the tracked history
+*.PRE_ARFIX.md.bak
+code/synthetic_data_generator/output/m13_cache/
